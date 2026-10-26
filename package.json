@@ -11,9 +11,14 @@
     "icons": "node scripts/make-icons.mjs",
     "locales": "node scripts/locales.src.mjs",
     "zip": "node scripts/pack.mjs",
-    "store:images": "node scripts/store-images.mjs"
+    "store:images": "node scripts/store-images.mjs",
+    "zip:firefox": "node scripts/firefox.mjs",
+    "lint:firefox": "node scripts/firefox.mjs && web-ext lint --source-dir dist/firefox",
+    "test:e2e:firefox": "node e2e/firefox.mjs"
   },
   "devDependencies": {
-    "playwright-core": "^1.64.1"
+    "playwright-core": "^1.64.1",
+    "puppeteer-core": "^25.16.0",
+    "web-ext": "^10.8.0"
   }
 }
