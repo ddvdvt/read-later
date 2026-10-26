@@ -1,0 +1,896 @@
+{
+  "extName": {
+    "message": "Read Later — offline articles, no account"
+  },
+  "extShortName": {
+    "message": "Read Later"
+  },
+  "appName": {
+    "message": "Read Later"
+  },
+  "extDescription": {
+    "message": "Save articles and read them offline. Everything stays on your device: no account, easy import from other services and export."
+  },
+  "actionTitle": {
+    "message": "Save for later (Alt+Shift+S)"
+  },
+  "cmdSavePage": {
+    "message": "Save the current page for later"
+  },
+  "cmdOpenLibrary": {
+    "message": "Open the article library"
+  },
+  "menuSavePage": {
+    "message": "Save page for later"
+  },
+  "menuSaveLink": {
+    "message": "Save link for later"
+  },
+  "menuOpenLibrary": {
+    "message": "Open library"
+  },
+  "savePage": {
+    "message": "Save page"
+  },
+  "saveAgain": {
+    "message": "Save again"
+  },
+  "saving": {
+    "message": "Saving…"
+  },
+  "toastSaved": {
+    "message": "Saved for later"
+  },
+  "toastUpdated": {
+    "message": "Already saved — text updated"
+  },
+  "toastSavedLink": {
+    "message": "Saved as a link: no article text found"
+  },
+  "toastLinkSaved": {
+    "message": "Link saved. You can load its text in the library"
+  },
+  "toastAlready": {
+    "message": "This link is already saved"
+  },
+  "errNotSavable": {
+    "message": "This page cannot be saved"
+  },
+  "errNotSavableHint": {
+    "message": "Browser pages and the extension store cannot be saved. Open an article on a regular website."
+  },
+  "errSave": {
+    "message": "Could not save"
+  },
+  "errLoad": {
+    "message": "Loading error"
+  },
+  "alreadySaved": {
+    "message": "This page is already saved"
+  },
+  "alreadyArchived": {
+    "message": "This page is already in the archive"
+  },
+  "movedToArchive": {
+    "message": "Moved to the archive"
+  },
+  "noPage": {
+    "message": "No page open"
+  },
+  "readNow": {
+    "message": "Read"
+  },
+  "recentTitle": {
+    "message": "Recently saved"
+  },
+  "recentEmpty": {
+    "message": "Articles you save will appear here."
+  },
+  "openLibrary": {
+    "message": "Open library"
+  },
+  "openLibraryCount": {
+    "message": "Open library · $1 unread"
+  },
+  "saveSelectedTabs": {
+    "message": "Save selected tabs ($1)"
+  },
+  "localOnly": {
+    "message": "Everything stays on this device"
+  },
+  "otherExtensions": {
+    "message": "More extensions by the author"
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "linkOnly": {
+    "message": "link"
+  },
+  "linkOnlyHint": {
+    "message": "Only the link is saved — the text can be loaded"
+  },
+  "textFailed": {
+    "message": "text failed"
+  },
+  "minutesShort": {
+    "message": "$1 min"
+  },
+  "libraryTitle": {
+    "message": "Library — Read Later"
+  },
+  "library": {
+    "message": "Library"
+  },
+  "skipToList": {
+    "message": "Skip to the list"
+  },
+  "sections": {
+    "message": "Sections"
+  },
+  "viewUnread": {
+    "message": "Unread"
+  },
+  "viewFavorites": {
+    "message": "Favorites"
+  },
+  "viewHighlights": {
+    "message": "With highlights"
+  },
+  "viewArchive": {
+    "message": "Archive"
+  },
+  "viewAll": {
+    "message": "All articles"
+  },
+  "viewTrash": {
+    "message": "Trash"
+  },
+  "tags": {
+    "message": "Tags"
+  },
+  "noTags": {
+    "message": "No tags yet"
+  },
+  "untagged": {
+    "message": "Untagged"
+  },
+  "importShort": {
+    "message": "Import"
+  },
+  "exportShort": {
+    "message": "Export & backup"
+  },
+  "search": {
+    "message": "Search"
+  },
+  "searchPlaceholder": {
+    "message": "Search article text"
+  },
+  "contentFilter": {
+    "message": "Text"
+  },
+  "filterAll": {
+    "message": "Text and links"
+  },
+  "filterFull": {
+    "message": "With text only"
+  },
+  "filterLinks": {
+    "message": "Links only"
+  },
+  "sortLabel": {
+    "message": "Sort"
+  },
+  "sortNewest": {
+    "message": "Newest first"
+  },
+  "sortOldest": {
+    "message": "Oldest first"
+  },
+  "sortTitle": {
+    "message": "By title"
+  },
+  "sortSite": {
+    "message": "By site"
+  },
+  "sortShortest": {
+    "message": "Shortest first"
+  },
+  "sortLongest": {
+    "message": "Longest first"
+  },
+  "sortProgress": {
+    "message": "In progress"
+  },
+  "layout": {
+    "message": "Layout"
+  },
+  "layoutList": {
+    "message": "List"
+  },
+  "layoutGrid": {
+    "message": "Cards"
+  },
+  "shortcuts": {
+    "message": "Keyboard shortcuts"
+  },
+  "showMore": {
+    "message": "Show more"
+  },
+  "loading": {
+    "message": "Loading…"
+  },
+  "articlesPlural": {
+    "message": "# article|# articles"
+  },
+  "trashInfo": {
+    "message": "deleted for good after 30 days"
+  },
+  "trashInfoLong": {
+    "message": "Deleted articles stay in the trash for 30 days, then they are removed for good."
+  },
+  "trashDaysLeft": {
+    "message": "deleted in $1 d"
+  },
+  "emptyTrash": {
+    "message": "Empty trash"
+  },
+  "loadTextAll": {
+    "message": "Load text for all"
+  },
+  "loadTextN": {
+    "message": "Load text ($1)"
+  },
+  "emptyLibraryTitle": {
+    "message": "Your library is empty"
+  },
+  "emptyLibraryText": {
+    "message": "Open an article and click the extension icon, press Alt+Shift+S or choose \"Save page for later\" in the context menu."
+  },
+  "emptyLibraryImport": {
+    "message": "Moving from another service? Import a Pocket, Omnivore or Instapaper export, or browser bookmarks."
+  },
+  "noResults": {
+    "message": "Nothing found"
+  },
+  "noResultsHint": {
+    "message": "Search covers titles, sites, tags and article text. Try another word or the \"All articles\" view."
+  },
+  "trashEmpty": {
+    "message": "The trash is empty"
+  },
+  "allRead": {
+    "message": "All caught up"
+  },
+  "allReadHint": {
+    "message": "No unread articles. Read ones are in the archive."
+  },
+  "nothingHere": {
+    "message": "Nothing here yet"
+  },
+  "favorite": {
+    "message": "Add to favorites"
+  },
+  "unfavorite": {
+    "message": "Remove from favorites"
+  },
+  "archive": {
+    "message": "Archive"
+  },
+  "unarchive": {
+    "message": "Move to unread"
+  },
+  "archived": {
+    "message": "archived"
+  },
+  "toTrash": {
+    "message": "Move to trash"
+  },
+  "restore": {
+    "message": "Restore"
+  },
+  "deleteForever": {
+    "message": "Delete forever"
+  },
+  "editTags": {
+    "message": "Tags"
+  },
+  "select": {
+    "message": "Select"
+  },
+  "selectedCount": {
+    "message": "Selected: $1"
+  },
+  "clearSelection": {
+    "message": "Clear selection"
+  },
+  "undo": {
+    "message": "Undo"
+  },
+  "doneArchived": {
+    "message": "Archived: $1"
+  },
+  "doneUnarchived": {
+    "message": "Moved to unread: $1"
+  },
+  "doneFavorite": {
+    "message": "Added to favorites"
+  },
+  "doneUnfavorite": {
+    "message": "Removed from favorites"
+  },
+  "doneTrashed": {
+    "message": "Moved to trash: $1"
+  },
+  "doneRestored": {
+    "message": "Restored: $1"
+  },
+  "doneDeleted": {
+    "message": "Deleted forever: $1"
+  },
+  "confirmDeleteForever": {
+    "message": "Delete $1 article(s) forever? Their text, highlights and notes cannot be restored."
+  },
+  "tagHint": {
+    "message": "Comma-separated. Untick a tag to remove it."
+  },
+  "tagHintMany": {
+    "message": "For the $1 selected articles. Comma-separated; untick to remove a tag from all."
+  },
+  "tagPlaceholder": {
+    "message": "e.g. work, longread"
+  },
+  "tagsSaved": {
+    "message": "Tags saved"
+  },
+  "save": {
+    "message": "Save"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "close": {
+    "message": "Close"
+  },
+  "later": {
+    "message": "Later"
+  },
+  "stop": {
+    "message": "Stop"
+  },
+  "keyMove": {
+    "message": "Next / previous article"
+  },
+  "keyOpen": {
+    "message": "Open in the reader"
+  },
+  "keySelect": {
+    "message": "Select"
+  },
+  "keySelectAll": {
+    "message": "Select all shown"
+  },
+  "keyArchive": {
+    "message": "Archive / unarchive"
+  },
+  "keyFavorite": {
+    "message": "Favorite"
+  },
+  "keyTags": {
+    "message": "Tags"
+  },
+  "keyDelete": {
+    "message": "Move to trash"
+  },
+  "keySearch": {
+    "message": "Search"
+  },
+  "keyGo": {
+    "message": "Unread / archive / favorites"
+  },
+  "keyEscape": {
+    "message": "Clear selection and search"
+  },
+  "backupReminder": {
+    "message": "All articles are stored only in this browser. It has been a while since the last backup — save a copy just in case."
+  },
+  "backupNow": {
+    "message": "Save a backup"
+  },
+  "backupDone": {
+    "message": "Backup saved"
+  },
+  "quotaWarn": {
+    "message": "Storage for the extension is almost full ($1). Delete articles you no longer need or turn off image saving."
+  },
+  "quotaCritical": {
+    "message": "Storage is full ($1): new articles may fail to save. Make a backup and free some space."
+  },
+  "saveTabsTitle": {
+    "message": "Save $1 selected tabs."
+  },
+  "saveTabsExplain": {
+    "message": "To read text from several tabs at once, Chrome will ask for access to websites. It is used only for these tabs and removed right after saving."
+  },
+  "saveTabsGo": {
+    "message": "Allow and save"
+  },
+  "savingTabs": {
+    "message": "Saving tabs: $1 of $2"
+  },
+  "saveTabsDone": {
+    "message": "Saved with text: $1, without text: $2"
+  },
+  "loadingTexts": {
+    "message": "Loading text: $1 of $2"
+  },
+  "loadingTextsProgress": {
+    "message": "Loaded $1 of $2 (ok: $3, failed: $4)"
+  },
+  "loadTextsDone": {
+    "message": "Text loaded: $1, failed: $2"
+  },
+  "permissionDenied": {
+    "message": "Access was not granted — nothing was loaded"
+  },
+  "typography": {
+    "message": "Appearance"
+  },
+  "more": {
+    "message": "More"
+  },
+  "openOriginal": {
+    "message": "Open original"
+  },
+  "font": {
+    "message": "Font"
+  },
+  "fontSystem": {
+    "message": "System"
+  },
+  "fontSize": {
+    "message": "Size"
+  },
+  "smaller": {
+    "message": "Smaller"
+  },
+  "bigger": {
+    "message": "Bigger"
+  },
+  "lineHeight": {
+    "message": "Line spacing"
+  },
+  "width": {
+    "message": "Width"
+  },
+  "widthNarrow": {
+    "message": "Narrow"
+  },
+  "widthMedium": {
+    "message": "Medium"
+  },
+  "widthWide": {
+    "message": "Wide"
+  },
+  "theme": {
+    "message": "Theme"
+  },
+  "themeAuto": {
+    "message": "Auto"
+  },
+  "themeLight": {
+    "message": "Light"
+  },
+  "themeSepia": {
+    "message": "Sepia"
+  },
+  "themeDark": {
+    "message": "Dark"
+  },
+  "align": {
+    "message": "Alignment"
+  },
+  "alignLeft": {
+    "message": "Left"
+  },
+  "alignJustify": {
+    "message": "Justified"
+  },
+  "copyMarkdown": {
+    "message": "Copy as Markdown"
+  },
+  "refetch": {
+    "message": "Reload the text"
+  },
+  "finishArchive": {
+    "message": "Done — archive it"
+  },
+  "backToLibrary": {
+    "message": "Back to library"
+  },
+  "endOfArticle": {
+    "message": "End of article"
+  },
+  "inArchive": {
+    "message": "This article is archived"
+  },
+  "savedOn": {
+    "message": "saved $1"
+  },
+  "highlightsTitle": {
+    "message": "Highlights and notes"
+  },
+  "highlightHelp": {
+    "message": "Select text to get colors and a note. Press H to highlight right away."
+  },
+  "copyHighlights": {
+    "message": "Copy all"
+  },
+  "highlight": {
+    "message": "Highlight"
+  },
+  "colorYellow": {
+    "message": "Yellow"
+  },
+  "colorGreen": {
+    "message": "Green"
+  },
+  "colorBlue": {
+    "message": "Blue"
+  },
+  "colorPink": {
+    "message": "Pink"
+  },
+  "addNote": {
+    "message": "Note"
+  },
+  "deleteHighlight": {
+    "message": "Delete highlight"
+  },
+  "highlightDeleted": {
+    "message": "Highlight deleted"
+  },
+  "highlightLost": {
+    "message": "Passage not found (the text has changed)"
+  },
+  "noHighlights": {
+    "message": "No highlights yet"
+  },
+  "noteTitle": {
+    "message": "Note for the highlight"
+  },
+  "copied": {
+    "message": "Copied"
+  },
+  "copyFailed": {
+    "message": "Copy failed"
+  },
+  "imageNotSaved": {
+    "message": "image not saved — open"
+  },
+  "noTextTitle": {
+    "message": "The article text is not saved yet"
+  },
+  "noTextFailedTitle": {
+    "message": "The text could not be loaded"
+  },
+  "noTextExplain": {
+    "message": "Only the link is saved (for example, after an import). The extension can download the page and keep its text for offline reading: Chrome will ask for access to this site, and the access is removed right after."
+  },
+  "loadText": {
+    "message": "Load text"
+  },
+  "loadingText": {
+    "message": "Loading text…"
+  },
+  "textLoaded": {
+    "message": "Text saved"
+  },
+  "textLoadFailed": {
+    "message": "Could not get the article text. Open the original and save the page from there."
+  },
+  "autoArchived": {
+    "message": "Finished — moved to the archive"
+  },
+  "inTrashNotice": {
+    "message": "This article is in the trash"
+  },
+  "notFound": {
+    "message": "Article not found — it may have been deleted."
+  },
+  "optionsTitle": {
+    "message": "Settings — Read Later"
+  },
+  "settingsSaved": {
+    "message": "Saved"
+  },
+  "sectionImport": {
+    "message": "Import"
+  },
+  "sectionExport": {
+    "message": "Export and backup"
+  },
+  "sectionReading": {
+    "message": "Reading"
+  },
+  "sectionSaving": {
+    "message": "Saving"
+  },
+  "sectionStorage": {
+    "message": "Storage and access"
+  },
+  "sectionAbout": {
+    "message": "About"
+  },
+  "importIntro": {
+    "message": "Bring your saved articles from another service: Pocket exports (HTML or CSV), Omnivore (ZIP), Instapaper (CSV), any browser bookmarks file (HTML), a list of links (TXT) or a backup of this extension (JSON)."
+  },
+  "dropTitle": {
+    "message": "Drop a file here or click to choose"
+  },
+  "importUrlsTitle": {
+    "message": "Paste a list of links"
+  },
+  "importUrlsPlaceholder": {
+    "message": "https://… one per line"
+  },
+  "importUrlsGo": {
+    "message": "Read the links"
+  },
+  "importBookmarksTitle": {
+    "message": "From browser bookmarks"
+  },
+  "importBookmarksHint": {
+    "message": "Chrome will ask for access to bookmarks — it is used to read the chosen folder and removed right after."
+  },
+  "importBookmarksGo": {
+    "message": "Choose a bookmarks folder"
+  },
+  "folder": {
+    "message": "Folder"
+  },
+  "folderTags": {
+    "message": "Use subfolders as tags"
+  },
+  "bookmarksLabel": {
+    "message": "browser bookmarks"
+  },
+  "urlList": {
+    "message": "list of links"
+  },
+  "backupLabel": {
+    "message": "backup"
+  },
+  "reading": {
+    "message": "Reading the file…"
+  },
+  "fileTooLarge": {
+    "message": "The file is too large"
+  },
+  "importBadJson": {
+    "message": "The JSON file is damaged"
+  },
+  "importFailed": {
+    "message": "Import failed"
+  },
+  "importNothing": {
+    "message": "No article links were found in the file."
+  },
+  "previewTitle": {
+    "message": "File: $1"
+  },
+  "previewFound": {
+    "message": "Links found: $1"
+  },
+  "previewNew": {
+    "message": "New to the library: $1"
+  },
+  "previewWithText": {
+    "message": "With article text: $1"
+  },
+  "previewArchived": {
+    "message": "Go to the archive (already read): $1"
+  },
+  "previewTags": {
+    "message": "Tags: $1"
+  },
+  "previewDuplicates": {
+    "message": "Already in the library or repeated: $1 (tags are merged)"
+  },
+  "previewLinksNote": {
+    "message": "Articles without text are saved as links. You can load their text later in the library (\"Links only\" → \"Load text\")."
+  },
+  "previewBackupTitle": {
+    "message": "Backup"
+  },
+  "previewArticles": {
+    "message": "Articles: $1"
+  },
+  "previewHighlights": {
+    "message": "Highlights and notes: $1"
+  },
+  "previewBackupNew": {
+    "message": "Not in this library yet: $1"
+  },
+  "previewBackupNote": {
+    "message": "Articles that already exist here are replaced only when the backup copy is newer. Nothing is deleted."
+  },
+  "importGo": {
+    "message": "Import ($1)"
+  },
+  "restoreGo": {
+    "message": "Restore"
+  },
+  "importing": {
+    "message": "Importing…"
+  },
+  "importingProgress": {
+    "message": "Imported $1 of $2"
+  },
+  "importDone": {
+    "message": "Articles added: $1"
+  },
+  "importUpdated": {
+    "message": "Existing articles updated: $1"
+  },
+  "importLinksDone": {
+    "message": "Without text (links only): $1. You can load the text in the library."
+  },
+  "showLinks": {
+    "message": "Show links without text"
+  },
+  "exportIntro": {
+    "message": "All articles are stored only in this browser. Keep a backup — restore it in the Import section on this or another computer."
+  },
+  "exportJsonHint": {
+    "message": "A complete, lossless copy: text, tags, highlights, notes, reading position, settings."
+  },
+  "exportWithImages": {
+    "message": "Include saved images"
+  },
+  "exportJson": {
+    "message": "Download backup"
+  },
+  "exportHtmlHint": {
+    "message": "A bookmarks file: opens in any browser and imports into most services."
+  },
+  "exportHtml": {
+    "message": "Download bookmarks"
+  },
+  "exportMdHint": {
+    "message": "ZIP with one file per article, text and highlights — for Obsidian, Logseq or any notes app."
+  },
+  "exportMd": {
+    "message": "Download Markdown (.zip)"
+  },
+  "exportDone": {
+    "message": "Done: $1"
+  },
+  "exportFailed": {
+    "message": "Export failed"
+  },
+  "savedAsLink": {
+    "message": "Only the link was saved"
+  },
+  "backupDays": {
+    "message": "Backup reminder"
+  },
+  "every7": {
+    "message": "every week"
+  },
+  "every14": {
+    "message": "every 2 weeks"
+  },
+  "every30": {
+    "message": "every month"
+  },
+  "never": {
+    "message": "never"
+  },
+  "lastBackup": {
+    "message": "Last backup: $1"
+  },
+  "noBackupYet": {
+    "message": "No backup yet"
+  },
+  "noUploads": {
+    "message": "The extension never uploads backups: the file is saved only where you choose."
+  },
+  "wpm": {
+    "message": "Reading speed, words per minute"
+  },
+  "autoArchive": {
+    "message": "Archive an article when you reach the end"
+  },
+  "remoteImages": {
+    "message": "Show images from the website when they are not saved (the site sees the request)"
+  },
+  "saveImages": {
+    "message": "Save article images for offline reading"
+  },
+  "imageCap": {
+    "message": "Limit per article"
+  },
+  "imagesNote": {
+    "message": "Some websites do not allow copying their images — those stay links to the original."
+  },
+  "openAfterSave": {
+    "message": "Open the article in the reader right after saving from the popup"
+  },
+  "shortcut": {
+    "message": "Shortcut"
+  },
+  "shortcutNone": {
+    "message": "not set"
+  },
+  "changeShortcut": {
+    "message": "Change"
+  },
+  "statArticles": {
+    "message": "Articles"
+  },
+  "statUnread": {
+    "message": "unread: $1"
+  },
+  "statArchive": {
+    "message": "archived: $1"
+  },
+  "statLinks": {
+    "message": "Links only (no text)"
+  },
+  "statImages": {
+    "message": "Saved images"
+  },
+  "statTrash": {
+    "message": "In the trash"
+  },
+  "statUsage": {
+    "message": "Used"
+  },
+  "statPersistent": {
+    "message": "Protected from cleanup"
+  },
+  "statPersistentNo": {
+    "message": "no (the browser may clear data when the disk is full)"
+  },
+  "yes": {
+    "message": "yes"
+  },
+  "siteAccess": {
+    "message": "Website access"
+  },
+  "hostAccessNone": {
+    "message": "The extension has no website access right now. It is requested only while loading text or saving several tabs."
+  },
+  "hostAccessSome": {
+    "message": "Access currently granted: $1."
+  },
+  "bookmarksAccess": {
+    "message": "Bookmarks access is granted."
+  },
+  "revokeHosts": {
+    "message": "Revoke access"
+  },
+  "dangerZone": {
+    "message": "Delete data"
+  },
+  "wipeAll": {
+    "message": "Delete all articles and settings"
+  },
+  "confirmWipe": {
+    "message": "Delete the whole library ($1), highlights, notes and settings? Save a backup first — this cannot be undone."
+  },
+  "wiped": {
+    "message": "All data deleted"
+  },
+  "aboutText": {
+    "message": "Save articles to read later — even offline. Use the toolbar icon, the context menu or Alt+Shift+S."
+  },
+  "privacyShort": {
+    "message": "No account, ads or analytics. Articles, highlights and settings are stored only in this browser and are never sent anywhere."
+  },
+  "privacyPolicy": {
+    "message": "Privacy policy"
+  }
+}

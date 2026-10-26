@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="appName">Прочитать позже</title>
+  <link rel="stylesheet" href="../shared/ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <img src="../../icons/icon32.png" width="22" height="22" alt="">
+    <strong data-i18n="appName">Прочитать позже</strong>
+    <span class="spacer"></span>
+    <a class="btn ghost icon" id="openOptions" href="../options/options.html" target="_blank" data-icon="settings" data-i18n-title="settings" title="Настройки"><span class="sr-only" data-i18n="settings">Настройки</span></a>
+  </header>
+
+  <main>
+    <section class="current" id="current" aria-live="polite">
+      <p class="page-title" id="pageTitle">…</p>
+      <p class="page-host muted" id="pageHost"></p>
+      <div class="save-row">
+        <button type="button" class="primary big" id="saveBtn" data-icon="save" disabled><span id="saveLabel" data-i18n="savePage">Сохранить страницу</span></button>
+        <span class="muted hint"><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd></span>
+      </div>
+      <p class="status" id="status" hidden></p>
+      <div class="saved-actions" id="savedActions" hidden>
+        <a class="btn" id="readNow" href="#" data-icon="book"><span data-i18n="readNow">Читать</span></a>
+        <button type="button" class="ghost" id="archiveNow" data-icon="archive"><span data-i18n="archive">В архив</span></button>
+      </div>
+      <button type="button" id="saveTabs" class="tabs-btn" data-icon="tabs" hidden><span id="saveTabsLabel"></span></button>
+    </section>
+
+    <section class="recent">
+      <h2 data-i18n="recentTitle">Недавно сохранённые</h2>
+      <ol id="recent" class="recent-list"></ol>
+      <p class="muted empty" id="recentEmpty" hidden data-i18n="recentEmpty">Здесь появятся статьи, которые вы сохраните.</p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="btn primary-outline" id="openLibrary" href="../library/library.html" target="_blank" data-icon="book"><span id="libraryLabel" data-i18n="openLibrary">Открыть библиотеку</span></a>
+    <div class="foot-links">
+      <span data-i18n="localOnly">Всё хранится только на этом устройстве</span>
+      <a href="#" target="_blank" rel="noopener" data-brand-link="other" data-i18n="otherExtensions">Другие расширения автора</a>
+    </div>
+  </footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

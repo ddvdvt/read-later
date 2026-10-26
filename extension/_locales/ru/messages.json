@@ -1,0 +1,896 @@
+{
+  "extName": {
+    "message": "Прочитать позже — статьи офлайн, без аккаунта"
+  },
+  "extShortName": {
+    "message": "Читать позже"
+  },
+  "appName": {
+    "message": "Прочитать позже"
+  },
+  "extDescription": {
+    "message": "Сохраняйте статьи и читайте без интернета. Всё хранится у вас: без аккаунта, с импортом из других сервисов и экспортом."
+  },
+  "actionTitle": {
+    "message": "Сохранить для чтения (Alt+Shift+S)"
+  },
+  "cmdSavePage": {
+    "message": "Сохранить текущую страницу для чтения"
+  },
+  "cmdOpenLibrary": {
+    "message": "Открыть библиотеку статей"
+  },
+  "menuSavePage": {
+    "message": "Сохранить страницу для чтения"
+  },
+  "menuSaveLink": {
+    "message": "Сохранить ссылку для чтения"
+  },
+  "menuOpenLibrary": {
+    "message": "Открыть библиотеку"
+  },
+  "savePage": {
+    "message": "Сохранить страницу"
+  },
+  "saveAgain": {
+    "message": "Обновить текст"
+  },
+  "saving": {
+    "message": "Сохраняю…"
+  },
+  "toastSaved": {
+    "message": "Сохранено для чтения"
+  },
+  "toastUpdated": {
+    "message": "Уже было в списке — текст обновлён"
+  },
+  "toastSavedLink": {
+    "message": "Сохранено как ссылка: текст статьи не найден"
+  },
+  "toastLinkSaved": {
+    "message": "Ссылка сохранена. Текст можно загрузить в библиотеке"
+  },
+  "toastAlready": {
+    "message": "Эта ссылка уже в списке"
+  },
+  "errNotSavable": {
+    "message": "Эту страницу нельзя сохранить"
+  },
+  "errNotSavableHint": {
+    "message": "Служебные страницы браузера и магазин расширений сохранить нельзя. Откройте статью на обычном сайте."
+  },
+  "errSave": {
+    "message": "Не удалось сохранить"
+  },
+  "errLoad": {
+    "message": "Ошибка загрузки"
+  },
+  "alreadySaved": {
+    "message": "Эта страница уже в списке"
+  },
+  "alreadyArchived": {
+    "message": "Эта страница уже в архиве"
+  },
+  "movedToArchive": {
+    "message": "Перенесено в архив"
+  },
+  "noPage": {
+    "message": "Нет открытой страницы"
+  },
+  "readNow": {
+    "message": "Читать"
+  },
+  "recentTitle": {
+    "message": "Недавно сохранённые"
+  },
+  "recentEmpty": {
+    "message": "Здесь появятся статьи, которые вы сохраните."
+  },
+  "openLibrary": {
+    "message": "Открыть библиотеку"
+  },
+  "openLibraryCount": {
+    "message": "Открыть библиотеку · непрочитанных: $1"
+  },
+  "saveSelectedTabs": {
+    "message": "Сохранить выбранные вкладки ($1)"
+  },
+  "localOnly": {
+    "message": "Всё хранится только на этом устройстве"
+  },
+  "otherExtensions": {
+    "message": "Другие расширения автора"
+  },
+  "settings": {
+    "message": "Настройки"
+  },
+  "linkOnly": {
+    "message": "ссылка"
+  },
+  "linkOnlyHint": {
+    "message": "Сохранена только ссылка — текст можно загрузить"
+  },
+  "textFailed": {
+    "message": "текст не загрузился"
+  },
+  "minutesShort": {
+    "message": "$1 мин"
+  },
+  "libraryTitle": {
+    "message": "Библиотека — Прочитать позже"
+  },
+  "library": {
+    "message": "Библиотека"
+  },
+  "skipToList": {
+    "message": "К списку статей"
+  },
+  "sections": {
+    "message": "Разделы"
+  },
+  "viewUnread": {
+    "message": "Непрочитанное"
+  },
+  "viewFavorites": {
+    "message": "Избранное"
+  },
+  "viewHighlights": {
+    "message": "С выделениями"
+  },
+  "viewArchive": {
+    "message": "Архив"
+  },
+  "viewAll": {
+    "message": "Все статьи"
+  },
+  "viewTrash": {
+    "message": "Корзина"
+  },
+  "tags": {
+    "message": "Теги"
+  },
+  "noTags": {
+    "message": "Тегов пока нет"
+  },
+  "untagged": {
+    "message": "Без тегов"
+  },
+  "importShort": {
+    "message": "Импорт"
+  },
+  "exportShort": {
+    "message": "Экспорт и копия"
+  },
+  "search": {
+    "message": "Поиск"
+  },
+  "searchPlaceholder": {
+    "message": "Поиск по тексту статей"
+  },
+  "contentFilter": {
+    "message": "Текст"
+  },
+  "filterAll": {
+    "message": "С текстом и ссылки"
+  },
+  "filterFull": {
+    "message": "Только с текстом"
+  },
+  "filterLinks": {
+    "message": "Только ссылки"
+  },
+  "sortLabel": {
+    "message": "Сортировка"
+  },
+  "sortNewest": {
+    "message": "Сначала новые"
+  },
+  "sortOldest": {
+    "message": "Сначала старые"
+  },
+  "sortTitle": {
+    "message": "По названию"
+  },
+  "sortSite": {
+    "message": "По сайту"
+  },
+  "sortShortest": {
+    "message": "Сначала короткие"
+  },
+  "sortLongest": {
+    "message": "Сначала длинные"
+  },
+  "sortProgress": {
+    "message": "Начатые"
+  },
+  "layout": {
+    "message": "Вид"
+  },
+  "layoutList": {
+    "message": "Список"
+  },
+  "layoutGrid": {
+    "message": "Карточки"
+  },
+  "shortcuts": {
+    "message": "Горячие клавиши"
+  },
+  "showMore": {
+    "message": "Показать ещё"
+  },
+  "loading": {
+    "message": "Загрузка…"
+  },
+  "articlesPlural": {
+    "message": "# статья|# статьи|# статей"
+  },
+  "trashInfo": {
+    "message": "удаляются насовсем через 30 дней"
+  },
+  "trashInfoLong": {
+    "message": "Удалённые статьи лежат в корзине 30 дней, потом удаляются насовсем."
+  },
+  "trashDaysLeft": {
+    "message": "удалится через $1 дн."
+  },
+  "emptyTrash": {
+    "message": "Очистить корзину"
+  },
+  "loadTextAll": {
+    "message": "Загрузить текст для всех"
+  },
+  "loadTextN": {
+    "message": "Загрузить текст ($1)"
+  },
+  "emptyLibraryTitle": {
+    "message": "Библиотека пуста"
+  },
+  "emptyLibraryText": {
+    "message": "Откройте статью и нажмите на значок расширения, Alt+Shift+S или «Сохранить страницу для чтения» в контекстном меню."
+  },
+  "emptyLibraryImport": {
+    "message": "Переезжаете из другого сервиса? Импортируйте экспорт Pocket, Omnivore, Instapaper или закладки браузера."
+  },
+  "noResults": {
+    "message": "Ничего не найдено"
+  },
+  "noResultsHint": {
+    "message": "Поиск идёт по заголовкам, сайтам, тегам и тексту статей. Попробуйте другое слово или раздел «Все статьи»."
+  },
+  "trashEmpty": {
+    "message": "Корзина пуста"
+  },
+  "allRead": {
+    "message": "Всё прочитано"
+  },
+  "allReadHint": {
+    "message": "Непрочитанных статей нет. Прочитанные — в архиве."
+  },
+  "nothingHere": {
+    "message": "Здесь пока ничего нет"
+  },
+  "favorite": {
+    "message": "В избранное"
+  },
+  "unfavorite": {
+    "message": "Убрать из избранного"
+  },
+  "archive": {
+    "message": "В архив"
+  },
+  "unarchive": {
+    "message": "Вернуть в непрочитанное"
+  },
+  "archived": {
+    "message": "в архиве"
+  },
+  "toTrash": {
+    "message": "В корзину"
+  },
+  "restore": {
+    "message": "Восстановить"
+  },
+  "deleteForever": {
+    "message": "Удалить навсегда"
+  },
+  "editTags": {
+    "message": "Теги"
+  },
+  "select": {
+    "message": "Выбрать"
+  },
+  "selectedCount": {
+    "message": "Выбрано: $1"
+  },
+  "clearSelection": {
+    "message": "Снять выбор"
+  },
+  "undo": {
+    "message": "Отменить"
+  },
+  "doneArchived": {
+    "message": "В архиве: $1"
+  },
+  "doneUnarchived": {
+    "message": "Возвращено в непрочитанное: $1"
+  },
+  "doneFavorite": {
+    "message": "Добавлено в избранное"
+  },
+  "doneUnfavorite": {
+    "message": "Убрано из избранного"
+  },
+  "doneTrashed": {
+    "message": "В корзине: $1"
+  },
+  "doneRestored": {
+    "message": "Восстановлено: $1"
+  },
+  "doneDeleted": {
+    "message": "Удалено навсегда: $1"
+  },
+  "confirmDeleteForever": {
+    "message": "Удалить навсегда статей: $1? Тексты, выделения и заметки будут удалены без возможности восстановления."
+  },
+  "tagHint": {
+    "message": "Через запятую. Снимите флажок, чтобы убрать тег."
+  },
+  "tagHintMany": {
+    "message": "Для выбранных статей ($1). Через запятую; снятый флажок убирает тег у всех."
+  },
+  "tagPlaceholder": {
+    "message": "например: работа, длинное"
+  },
+  "tagsSaved": {
+    "message": "Теги сохранены"
+  },
+  "save": {
+    "message": "Сохранить"
+  },
+  "cancel": {
+    "message": "Отмена"
+  },
+  "close": {
+    "message": "Закрыть"
+  },
+  "later": {
+    "message": "Позже"
+  },
+  "stop": {
+    "message": "Остановить"
+  },
+  "keyMove": {
+    "message": "Следующая / предыдущая статья"
+  },
+  "keyOpen": {
+    "message": "Открыть в читалке"
+  },
+  "keySelect": {
+    "message": "Выбрать"
+  },
+  "keySelectAll": {
+    "message": "Выбрать все на экране"
+  },
+  "keyArchive": {
+    "message": "В архив / вернуть"
+  },
+  "keyFavorite": {
+    "message": "Избранное"
+  },
+  "keyTags": {
+    "message": "Теги"
+  },
+  "keyDelete": {
+    "message": "В корзину"
+  },
+  "keySearch": {
+    "message": "Поиск"
+  },
+  "keyGo": {
+    "message": "Непрочитанное / архив / избранное"
+  },
+  "keyEscape": {
+    "message": "Сбросить выбор и поиск"
+  },
+  "backupReminder": {
+    "message": "Все статьи хранятся только в этом браузере. Давно не было резервной копии — сохраните файл на всякий случай."
+  },
+  "backupNow": {
+    "message": "Сохранить копию"
+  },
+  "backupDone": {
+    "message": "Резервная копия сохранена"
+  },
+  "quotaWarn": {
+    "message": "Место для данных расширения почти закончилось ($1). Удалите ненужные статьи или отключите сохранение картинок."
+  },
+  "quotaCritical": {
+    "message": "Место закончилось ($1): новые статьи могут не сохраниться. Сделайте резервную копию и освободите место."
+  },
+  "saveTabsTitle": {
+    "message": "Сохранить выбранные вкладки: $1."
+  },
+  "saveTabsExplain": {
+    "message": "Чтобы прочитать текст из нескольких вкладок сразу, Chrome попросит доступ к сайтам. Доступ используется только для этих вкладок и снимается сразу после сохранения."
+  },
+  "saveTabsGo": {
+    "message": "Разрешить и сохранить"
+  },
+  "savingTabs": {
+    "message": "Сохраняю вкладки: $1 из $2"
+  },
+  "saveTabsDone": {
+    "message": "Сохранено с текстом: $1, без текста: $2"
+  },
+  "loadingTexts": {
+    "message": "Загружаю тексты: $1 из $2"
+  },
+  "loadingTextsProgress": {
+    "message": "Загружено $1 из $2 (готово: $3, не удалось: $4)"
+  },
+  "loadTextsDone": {
+    "message": "Тексты загружены: $1, не удалось: $2"
+  },
+  "permissionDenied": {
+    "message": "Доступ не выдан — ничего не загружено"
+  },
+  "typography": {
+    "message": "Оформление"
+  },
+  "more": {
+    "message": "Ещё"
+  },
+  "openOriginal": {
+    "message": "Открыть оригинал"
+  },
+  "font": {
+    "message": "Шрифт"
+  },
+  "fontSystem": {
+    "message": "Системный"
+  },
+  "fontSize": {
+    "message": "Размер"
+  },
+  "smaller": {
+    "message": "Меньше"
+  },
+  "bigger": {
+    "message": "Больше"
+  },
+  "lineHeight": {
+    "message": "Интервал"
+  },
+  "width": {
+    "message": "Ширина"
+  },
+  "widthNarrow": {
+    "message": "Узко"
+  },
+  "widthMedium": {
+    "message": "Средне"
+  },
+  "widthWide": {
+    "message": "Широко"
+  },
+  "theme": {
+    "message": "Тема"
+  },
+  "themeAuto": {
+    "message": "Авто"
+  },
+  "themeLight": {
+    "message": "Светлая"
+  },
+  "themeSepia": {
+    "message": "Сепия"
+  },
+  "themeDark": {
+    "message": "Тёмная"
+  },
+  "align": {
+    "message": "Выравнивание"
+  },
+  "alignLeft": {
+    "message": "По левому"
+  },
+  "alignJustify": {
+    "message": "По ширине"
+  },
+  "copyMarkdown": {
+    "message": "Копировать как Markdown"
+  },
+  "refetch": {
+    "message": "Загрузить текст заново"
+  },
+  "finishArchive": {
+    "message": "Прочитано — в архив"
+  },
+  "backToLibrary": {
+    "message": "В библиотеку"
+  },
+  "endOfArticle": {
+    "message": "Конец статьи"
+  },
+  "inArchive": {
+    "message": "Статья в архиве"
+  },
+  "savedOn": {
+    "message": "сохранено $1"
+  },
+  "highlightsTitle": {
+    "message": "Выделения и заметки"
+  },
+  "highlightHelp": {
+    "message": "Выделите текст — появится панель с цветами и заметкой. Клавиша H выделяет сразу."
+  },
+  "copyHighlights": {
+    "message": "Копировать все"
+  },
+  "highlight": {
+    "message": "Выделение"
+  },
+  "colorYellow": {
+    "message": "Жёлтый"
+  },
+  "colorGreen": {
+    "message": "Зелёный"
+  },
+  "colorBlue": {
+    "message": "Синий"
+  },
+  "colorPink": {
+    "message": "Розовый"
+  },
+  "addNote": {
+    "message": "Заметка"
+  },
+  "deleteHighlight": {
+    "message": "Удалить выделение"
+  },
+  "highlightDeleted": {
+    "message": "Выделение удалено"
+  },
+  "highlightLost": {
+    "message": "Фрагмент не найден в тексте (текст изменился)"
+  },
+  "noHighlights": {
+    "message": "Выделений пока нет"
+  },
+  "noteTitle": {
+    "message": "Заметка к выделению"
+  },
+  "copied": {
+    "message": "Скопировано"
+  },
+  "copyFailed": {
+    "message": "Не удалось скопировать"
+  },
+  "imageNotSaved": {
+    "message": "картинка не сохранена — открыть"
+  },
+  "noTextTitle": {
+    "message": "Текст статьи ещё не сохранён"
+  },
+  "noTextFailedTitle": {
+    "message": "Текст не удалось загрузить"
+  },
+  "noTextExplain": {
+    "message": "Сохранена только ссылка (например, после импорта). Расширение может скачать страницу и сохранить её текст для чтения без интернета: Chrome спросит доступ к этому сайту, после загрузки доступ будет снят."
+  },
+  "loadText": {
+    "message": "Загрузить текст"
+  },
+  "loadingText": {
+    "message": "Загружаю текст…"
+  },
+  "textLoaded": {
+    "message": "Текст сохранён"
+  },
+  "textLoadFailed": {
+    "message": "Не удалось получить текст статьи. Откройте оригинал и сохраните страницу оттуда."
+  },
+  "autoArchived": {
+    "message": "Дочитано — статья в архиве"
+  },
+  "inTrashNotice": {
+    "message": "Эта статья в корзине"
+  },
+  "notFound": {
+    "message": "Статья не найдена — возможно, она удалена."
+  },
+  "optionsTitle": {
+    "message": "Настройки — Прочитать позже"
+  },
+  "settingsSaved": {
+    "message": "Сохранено"
+  },
+  "sectionImport": {
+    "message": "Импорт"
+  },
+  "sectionExport": {
+    "message": "Экспорт и резервная копия"
+  },
+  "sectionReading": {
+    "message": "Чтение"
+  },
+  "sectionSaving": {
+    "message": "Сохранение"
+  },
+  "sectionStorage": {
+    "message": "Хранилище и доступ"
+  },
+  "sectionAbout": {
+    "message": "О расширении"
+  },
+  "importIntro": {
+    "message": "Перенесите сохранённые статьи из другого сервиса. Подходят файлы экспорта Pocket (HTML или CSV), Omnivore (ZIP), Instapaper (CSV), файл закладок любого браузера (HTML), список ссылок (TXT) и резервная копия этого расширения (JSON)."
+  },
+  "dropTitle": {
+    "message": "Перетащите файл сюда или нажмите, чтобы выбрать"
+  },
+  "importUrlsTitle": {
+    "message": "Вставить список ссылок"
+  },
+  "importUrlsPlaceholder": {
+    "message": "https://… по одной на строку"
+  },
+  "importUrlsGo": {
+    "message": "Разобрать ссылки"
+  },
+  "importBookmarksTitle": {
+    "message": "Из закладок браузера"
+  },
+  "importBookmarksHint": {
+    "message": "Chrome спросит доступ к закладкам — он нужен, чтобы прочитать выбранную папку, и снимается сразу после."
+  },
+  "importBookmarksGo": {
+    "message": "Выбрать папку закладок"
+  },
+  "folder": {
+    "message": "Папка"
+  },
+  "folderTags": {
+    "message": "Подпапки — как теги"
+  },
+  "bookmarksLabel": {
+    "message": "закладки браузера"
+  },
+  "urlList": {
+    "message": "список ссылок"
+  },
+  "backupLabel": {
+    "message": "резервная копия"
+  },
+  "reading": {
+    "message": "Читаю файл…"
+  },
+  "fileTooLarge": {
+    "message": "Файл слишком большой"
+  },
+  "importBadJson": {
+    "message": "Файл JSON повреждён"
+  },
+  "importFailed": {
+    "message": "Не удалось импортировать"
+  },
+  "importNothing": {
+    "message": "В файле не найдено ни одной ссылки на статью."
+  },
+  "previewTitle": {
+    "message": "Файл: $1"
+  },
+  "previewFound": {
+    "message": "Найдено ссылок: $1"
+  },
+  "previewNew": {
+    "message": "Новых для библиотеки: $1"
+  },
+  "previewWithText": {
+    "message": "С текстом статьи: $1"
+  },
+  "previewArchived": {
+    "message": "Попадут в архив (были прочитаны): $1"
+  },
+  "previewTags": {
+    "message": "Тегов: $1"
+  },
+  "previewDuplicates": {
+    "message": "Уже в библиотеке или повторяются: $1 (теги добавятся к существующим)"
+  },
+  "previewLinksNote": {
+    "message": "Статьи без текста сохранятся как ссылки. Текст можно загрузить потом в библиотеке («Только ссылки» → «Загрузить текст»)."
+  },
+  "previewBackupTitle": {
+    "message": "Резервная копия"
+  },
+  "previewArticles": {
+    "message": "Статей: $1"
+  },
+  "previewHighlights": {
+    "message": "Выделений и заметок: $1"
+  },
+  "previewBackupNew": {
+    "message": "Нет в этой библиотеке: $1"
+  },
+  "previewBackupNote": {
+    "message": "Статьи, которые уже есть здесь, заменятся только если в копии они новее. Ничего не удаляется."
+  },
+  "importGo": {
+    "message": "Импортировать ($1)"
+  },
+  "restoreGo": {
+    "message": "Восстановить"
+  },
+  "importing": {
+    "message": "Импортирую…"
+  },
+  "importingProgress": {
+    "message": "Импортировано $1 из $2"
+  },
+  "importDone": {
+    "message": "Добавлено статей: $1"
+  },
+  "importUpdated": {
+    "message": "Обновлено существующих: $1"
+  },
+  "importLinksDone": {
+    "message": "Без текста (только ссылки): $1. Текст можно загрузить в библиотеке."
+  },
+  "showLinks": {
+    "message": "Показать ссылки без текста"
+  },
+  "exportIntro": {
+    "message": "Все статьи хранятся только в этом браузере. Сохраняйте копию — её можно восстановить здесь же, в разделе «Импорт», на этом или другом компьютере."
+  },
+  "exportJsonHint": {
+    "message": "Полная копия без потерь: тексты, теги, выделения, заметки, позиция чтения, настройки."
+  },
+  "exportWithImages": {
+    "message": "Включить сохранённые картинки"
+  },
+  "exportJson": {
+    "message": "Скачать резервную копию"
+  },
+  "exportHtmlHint": {
+    "message": "Файл закладок: открывается в любом браузере и импортируется в большинство сервисов."
+  },
+  "exportHtml": {
+    "message": "Скачать закладки"
+  },
+  "exportMdHint": {
+    "message": "ZIP: по файлу на статью с текстом и выделениями — для Obsidian, Logseq и любых заметок."
+  },
+  "exportMd": {
+    "message": "Скачать Markdown (.zip)"
+  },
+  "exportDone": {
+    "message": "Готово: $1"
+  },
+  "exportFailed": {
+    "message": "Не удалось экспортировать"
+  },
+  "savedAsLink": {
+    "message": "Сохранена только ссылка"
+  },
+  "backupDays": {
+    "message": "Напоминать о резервной копии"
+  },
+  "every7": {
+    "message": "раз в неделю"
+  },
+  "every14": {
+    "message": "раз в 2 недели"
+  },
+  "every30": {
+    "message": "раз в месяц"
+  },
+  "never": {
+    "message": "не напоминать"
+  },
+  "lastBackup": {
+    "message": "Последняя копия: $1"
+  },
+  "noBackupYet": {
+    "message": "Копий ещё не было"
+  },
+  "noUploads": {
+    "message": "Расширение никуда не загружает копии: файл сохраняется только туда, куда скажете вы."
+  },
+  "wpm": {
+    "message": "Скорость чтения, слов в минуту"
+  },
+  "autoArchive": {
+    "message": "Переносить статью в архив, когда дочитали до конца"
+  },
+  "remoteImages": {
+    "message": "Показывать картинки с сайта, если они не сохранены (сайт увидит запрос)"
+  },
+  "saveImages": {
+    "message": "Сохранять картинки статьи для чтения без интернета"
+  },
+  "imageCap": {
+    "message": "Не больше на одну статью"
+  },
+  "imagesNote": {
+    "message": "Некоторые сайты запрещают копировать картинки — тогда они остаются ссылками на оригинал."
+  },
+  "openAfterSave": {
+    "message": "Открывать статью в читалке сразу после сохранения из окна расширения"
+  },
+  "shortcut": {
+    "message": "Горячая клавиша"
+  },
+  "shortcutNone": {
+    "message": "не задана"
+  },
+  "changeShortcut": {
+    "message": "Изменить"
+  },
+  "statArticles": {
+    "message": "Статей"
+  },
+  "statUnread": {
+    "message": "непрочитанных: $1"
+  },
+  "statArchive": {
+    "message": "в архиве: $1"
+  },
+  "statLinks": {
+    "message": "Только ссылки (без текста)"
+  },
+  "statImages": {
+    "message": "Сохранённые картинки"
+  },
+  "statTrash": {
+    "message": "В корзине"
+  },
+  "statUsage": {
+    "message": "Занято"
+  },
+  "statPersistent": {
+    "message": "Защита от автоочистки"
+  },
+  "statPersistentNo": {
+    "message": "нет (браузер может очистить данные при нехватке места)"
+  },
+  "yes": {
+    "message": "да"
+  },
+  "siteAccess": {
+    "message": "Доступ к сайтам"
+  },
+  "hostAccessNone": {
+    "message": "Сейчас у расширения нет доступа к сайтам. Он запрашивается только на время загрузки текста или сохранения нескольких вкладок."
+  },
+  "hostAccessSome": {
+    "message": "Сейчас выдан доступ: $1."
+  },
+  "bookmarksAccess": {
+    "message": "Выдан доступ к закладкам."
+  },
+  "revokeHosts": {
+    "message": "Отозвать доступ"
+  },
+  "dangerZone": {
+    "message": "Удаление данных"
+  },
+  "wipeAll": {
+    "message": "Удалить все статьи и настройки"
+  },
+  "confirmWipe": {
+    "message": "Удалить всю библиотеку ($1), выделения, заметки и настройки? Сначала сохраните резервную копию — отменить удаление нельзя."
+  },
+  "wiped": {
+    "message": "Все данные удалены"
+  },
+  "aboutText": {
+    "message": "Сохраняйте статьи, чтобы прочитать их позже — даже без интернета. Значок на панели, пункт в контекстном меню или Alt+Shift+S."
+  },
+  "privacyShort": {
+    "message": "Без аккаунта, рекламы и аналитики. Статьи, выделения и настройки хранятся только в этом браузере и никуда не отправляются."
+  },
+  "privacyPolicy": {
+    "message": "Политика конфиденциальности"
+  }
+}

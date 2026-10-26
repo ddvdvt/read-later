@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="optionsTitle">Настройки — Прочитать позже</title>
+  <link rel="icon" href="../../icons/icon32.png">
+  <link rel="stylesheet" href="../shared/ui.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="top">
+    <img src="../../icons/icon48.png" width="32" height="32" alt="">
+    <h1 data-i18n="optionsTitle">Настройки — Прочитать позже</h1>
+    <span class="spacer"></span>
+    <a class="btn" href="../library/library.html" data-icon="book"><span data-i18n="library">Библиотека</span></a>
+  </header>
+  <nav class="toc" aria-label="Разделы" data-i18n-aria="sections">
+    <a href="#import" data-i18n="sectionImport">Импорт</a>
+    <a href="#export" data-i18n="sectionExport">Экспорт и резервная копия</a>
+    <a href="#reading" data-i18n="sectionReading">Чтение</a>
+    <a href="#saving" data-i18n="sectionSaving">Сохранение</a>
+    <a href="#storage" data-i18n="sectionStorage">Хранилище и доступ</a>
+    <a href="#about" data-i18n="sectionAbout">О расширении</a>
+  </nav>
+
+  <main>
+    <section id="import" class="card">
+      <h2 data-i18n="sectionImport">Импорт</h2>
+      <p data-i18n="importIntro">Перенесите сохранённые статьи из другого сервиса. Подходят файлы экспорта Pocket (HTML или CSV), Omnivore (ZIP), Instapaper (CSV), файл закладок любого браузера (HTML), список ссылок (TXT) и резервная копия этого расширения (JSON).</p>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-describedby="dropHint">
+        <strong data-i18n="dropTitle">Перетащите файл сюда или нажмите, чтобы выбрать</strong>
+        <span class="muted" id="dropHint">.html · .csv · .zip · .json · .txt</span>
+        <input type="file" id="file" accept=".html,.htm,.csv,.tsv,.zip,.json,.txt" hidden>
+      </div>
+      <div class="row-2">
+        <details class="sub">
+          <summary data-i18n="importUrlsTitle">Вставить список ссылок</summary>
+          <textarea id="urls" rows="5" data-i18n-placeholder="importUrlsPlaceholder" placeholder="https://… по одной на строку"></textarea>
+          <button type="button" id="urlsGo" data-i18n="importUrlsGo">Разобрать ссылки</button>
+        </details>
+        <details class="sub" id="bmDetails">
+          <summary data-i18n="importBookmarksTitle">Из закладок браузера</summary>
+          <p class="muted" data-i18n="importBookmarksHint">Chrome спросит доступ к закладкам — только для чтения выбранной папки. После импорта доступ будет снят.</p>
+          <button type="button" id="bmLoad" data-i18n="importBookmarksGo">Выбрать папку закладок</button>
+          <div id="bmPick" hidden>
+            <select id="bmFolder" aria-label="Папка" data-i18n-aria="folder"></select>
+            <label><input type="checkbox" id="bmTags" checked> <span data-i18n="folderTags">Подпапки — как теги</span></label>
+            <button type="button" id="bmGo" data-i18n="importUrlsGo">Разобрать ссылки</button>
+          </div>
+        </details>
+      </div>
+      <div id="preview" class="preview" hidden aria-live="polite"></div>
+    </section>
+
+    <section id="export" class="card">
+      <h2 data-i18n="sectionExport">Экспорт и резервная копия</h2>
+      <p data-i18n="exportIntro">Все статьи хранятся только в этом браузере. Сохраняйте копию — её можно восстановить здесь же, в разделе «Импорт», на этом или другом компьютере.</p>
+      <div class="export-grid">
+        <div class="ex">
+          <h3>JSON</h3>
+          <p class="muted" data-i18n="exportJsonHint">Полная копия без потерь: тексты, теги, выделения, заметки, позиция чтения, настройки.</p>
+          <label><input type="checkbox" id="withImages"> <span data-i18n="exportWithImages">Включить сохранённые картинки</span></label>
+          <button type="button" class="primary" id="exJson" data-icon="download"><span data-i18n="exportJson">Скачать резервную копию</span></button>
+        </div>
+        <div class="ex">
+          <h3>HTML</h3>
+          <p class="muted" data-i18n="exportHtmlHint">Файл закладок: открывается в любом браузере и импортируется в большинство сервисов.</p>
+          <button type="button" id="exHtml" data-icon="download"><span data-i18n="exportHtml">Скачать закладки</span></button>
+        </div>
+        <div class="ex">
+          <h3>Markdown</h3>
+          <p class="muted" data-i18n="exportMdHint">ZIP: по файлу на статью с текстом и выделениями — для Obsidian, Logseq и любых заметок.</p>
+          <button type="button" id="exMd" data-icon="download"><span data-i18n="exportMd">Скачать Markdown (.zip)</span></button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="backupDays" data-i18n="backupDays">Напоминать о резервной копии</label>
+        <select id="backupDays" data-setting="backupDays">
+          <option value="7" data-i18n="every7">раз в неделю</option>
+          <option value="14" data-i18n="every14">раз в 2 недели</option>
+          <option value="30" data-i18n="every30">раз в месяц</option>
+          <option value="0" data-i18n="never">не напоминать</option>
+        </select>
+        <span class="muted" id="lastBackup"></span>
+      </div>
+      <p class="muted small" data-i18n="noUploads">Расширение никуда не загружает копии: файл сохраняется только туда, куда скажете вы.</p>
+    </section>
+
+    <section id="reading" class="card">
+      <h2 data-i18n="sectionReading">Чтение</h2>
+      <div class="grid2">
+        <div class="field"><label for="font" data-i18n="font">Шрифт</label>
+          <select id="font" data-setting="font">
+            <option value="serif">Serif</option><option value="sans">Sans</option><option value="mono">Mono</option><option value="system" data-i18n="fontSystem">Системный</option>
+          </select></div>
+        <div class="field"><label for="fontSize" data-i18n="fontSize">Размер</label>
+          <input type="number" id="fontSize" data-setting="fontSize" min="14" max="28" step="1"></div>
+        <div class="field"><label for="width" data-i18n="width">Ширина</label>
+          <select id="width" data-setting="width">
+            <option value="narrow" data-i18n="widthNarrow">Узко</option><option value="medium" data-i18n="widthMedium">Средне</option><option value="wide" data-i18n="widthWide">Широко</option>
+          </select></div>
+        <div class="field"><label for="theme" data-i18n="theme">Тема</label>
+          <select id="theme" data-setting="theme">
+            <option value="auto" data-i18n="themeAuto">Авто</option><option value="light" data-i18n="themeLight">Светлая</option><option value="sepia" data-i18n="themeSepia">Сепия</option><option value="dark" data-i18n="themeDark">Тёмная</option>
+          </select></div>
+        <div class="field"><label for="wpm" data-i18n="wpm">Скорость чтения, слов в минуту</label>
+          <input type="number" id="wpm" data-setting="wpm" min="80" max="600" step="10"></div>
+      </div>
+      <label class="check"><input type="checkbox" data-setting="autoArchive"> <span data-i18n="autoArchive">Переносить статью в архив, когда дочитали до конца</span></label>
+      <label class="check"><input type="checkbox" data-setting="remoteImages"> <span data-i18n="remoteImages">Показывать картинки с сайта, если они не сохранены (сайт увидит запрос)</span></label>
+    </section>
+
+    <section id="saving" class="card">
+      <h2 data-i18n="sectionSaving">Сохранение</h2>
+      <label class="check"><input type="checkbox" data-setting="saveImages"> <span data-i18n="saveImages">Сохранять картинки статьи для чтения без интернета</span></label>
+      <div class="field"><label for="imageCapMb" data-i18n="imageCap">Не больше на одну статью</label>
+        <select id="imageCapMb" data-setting="imageCapMb"><option value="1">1 MB</option><option value="2">2 MB</option><option value="5">5 MB</option><option value="10">10 MB</option><option value="20">20 MB</option></select></div>
+      <p class="muted small" data-i18n="imagesNote">Некоторые сайты запрещают копировать картинки — тогда они остаются ссылками на оригинал.</p>
+      <label class="check"><input type="checkbox" data-setting="openAfterSave"> <span data-i18n="openAfterSave">Открывать статью в читалке сразу после сохранения из окна расширения</span></label>
+      <div class="field"><span data-i18n="shortcut">Горячая клавиша</span> <kbd id="shortcut">Alt+Shift+S</kbd> <button type="button" class="ghost" id="shortcutBtn" data-i18n="changeShortcut">Изменить</button></div>
+    </section>
+
+    <section id="storage" class="card">
+      <h2 data-i18n="sectionStorage">Хранилище и доступ</h2>
+      <dl class="stats" id="stats"></dl>
+      <div class="field">
+        <button type="button" id="emptyTrash" data-icon="trash"><span data-i18n="emptyTrash">Очистить корзину</span></button>
+        <span class="muted small" data-i18n="trashInfoLong">Удалённые статьи лежат в корзине 30 дней, потом удаляются насовсем.</span>
+      </div>
+      <h3 data-i18n="siteAccess">Доступ к сайтам</h3>
+      <p id="hostAccess" class="muted"></p>
+      <button type="button" id="revokeHosts" hidden data-i18n="revokeHosts">Отозвать доступ</button>
+      <h3 data-i18n="dangerZone">Удаление данных</h3>
+      <button type="button" class="danger" id="wipe" data-i18n="wipeAll">Удалить все статьи и настройки</button>
+    </section>
+
+    <section id="about" class="card">
+      <h2 data-i18n="sectionAbout">О расширении</h2>
+      <p data-i18n="aboutText">Сохраняйте статьи, чтобы прочитать их позже — даже без интернета. Значок на панели, пункт в контекстном меню или Alt+Shift+S.</p>
+      <p data-i18n="privacyShort">Без аккаунта, рекламы и аналитики. Статьи, выделения и настройки хранятся только в этом браузере и никуда не отправляются.</p>
+      <p class="foot-links">
+        <a href="#" target="_blank" rel="noopener" data-brand-link="privacy" data-i18n="privacyPolicy">Политика конфиденциальности</a>
+        <a href="#" target="_blank" rel="noopener" data-brand-link="other" data-i18n="otherExtensions">Другие расширения автора</a>
+        <span id="version"></span>
+      </p>
+    </section>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

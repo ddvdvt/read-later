@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title data-i18n="appName">Прочитать позже</title>
+  <link rel="icon" href="../../icons/icon32.png">
+  <link rel="stylesheet" href="../shared/ui.css">
+  <link rel="stylesheet" href="reader.css">
+</head>
+<body>
+  <div class="progress-top" aria-hidden="true"><i id="progressBar"></i></div>
+  <header class="bar" id="bar">
+    <a class="btn ghost" id="backBtn" href="../library/library.html" data-icon="back"><span data-i18n="library">Библиотека</span></a>
+    <span class="spacer"></span>
+    <button type="button" class="icon ghost" id="typeBtn" data-icon="type" aria-haspopup="true" aria-expanded="false" data-i18n-title="typography" title="Оформление"></button>
+    <button type="button" class="icon ghost" id="hlListBtn" data-icon="note" aria-expanded="false" data-i18n-title="highlightsTitle" title="Выделения"></button>
+    <button type="button" class="icon ghost" id="favBtn" data-icon="star" data-i18n-title="favorite" title="В избранное"></button>
+    <button type="button" class="icon ghost" id="tagBtn" data-icon="tag" data-i18n-title="editTags" title="Теги"></button>
+    <button type="button" class="icon ghost" id="archiveBtn" data-icon="archive" data-i18n-title="archive" title="В архив"></button>
+    <a class="btn ghost icon" id="origBtn" href="#" target="_blank" rel="noopener noreferrer" data-icon="external" data-i18n-title="openOriginal" title="Открыть оригинал"></a>
+    <button type="button" class="icon ghost" id="moreBtn" aria-haspopup="true" aria-expanded="false" data-i18n-title="more" title="Ещё"><span aria-hidden="true">⋯</span></button>
+  </header>
+
+  <div class="panel" id="typePanel" hidden role="dialog" aria-label="Оформление" data-i18n-aria="typography">
+    <div class="prow"><span data-i18n="font">Шрифт</span>
+      <div class="seg" id="fontSeg">
+        <button type="button" data-font="serif" class="f-serif">Serif</button>
+        <button type="button" data-font="sans" class="f-sans">Sans</button>
+        <button type="button" data-font="mono" class="f-mono">Mono</button>
+        <button type="button" data-font="system" data-i18n="fontSystem">Системный</button>
+      </div>
+    </div>
+    <div class="prow"><span data-i18n="fontSize">Размер</span>
+      <div class="seg"><button type="button" id="sizeDown" aria-label="Меньше" data-i18n-aria="smaller">A−</button><output id="sizeOut">19</output><button type="button" id="sizeUp" aria-label="Больше" data-i18n-aria="bigger">A+</button></div>
+    </div>
+    <div class="prow"><span data-i18n="lineHeight">Интервал</span>
+      <input type="range" id="lineHeight" min="1.3" max="2" step="0.1">
+    </div>
+    <div class="prow"><span data-i18n="width">Ширина</span>
+      <div class="seg" id="widthSeg">
+        <button type="button" data-width="narrow" data-i18n="widthNarrow">Узко</button>
+        <button type="button" data-width="medium" data-i18n="widthMedium">Средне</button>
+        <button type="button" data-width="wide" data-i18n="widthWide">Широко</button>
+      </div>
+    </div>
+    <div class="prow"><span data-i18n="theme">Тема</span>
+      <div class="seg" id="themeSeg">
+        <button type="button" data-theme-btn="auto" data-i18n="themeAuto">Авто</button>
+        <button type="button" data-theme-btn="light" data-i18n="themeLight">Светлая</button>
+        <button type="button" data-theme-btn="sepia" data-i18n="themeSepia">Сепия</button>
+        <button type="button" data-theme-btn="dark" data-i18n="themeDark">Тёмная</button>
+      </div>
+    </div>
+    <div class="prow"><span data-i18n="align">Выравнивание</span>
+      <div class="seg" id="alignSeg">
+        <button type="button" data-align="left" data-i18n="alignLeft">По левому</button>
+        <button type="button" data-align="justify" data-i18n="alignJustify">По ширине</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel menu" id="moreMenu" hidden role="menu">
+    <button type="button" role="menuitem" id="copyMd" data-icon="copy"><span data-i18n="copyMarkdown">Копировать как Markdown</span></button>
+    <button type="button" role="menuitem" id="refetch" data-icon="refresh"><span data-i18n="refetch">Загрузить текст заново</span></button>
+    <button type="button" role="menuitem" id="deleteBtn" data-icon="trash"><span data-i18n="toTrash">В корзину</span></button>
+  </div>
+
+  <main class="page" id="page">
+    <p class="loading muted" id="loading"><span class="spinner"></span> <span data-i18n="loading">Загрузка…</span></p>
+    <article id="article" hidden>
+      <header class="a-head">
+        <p class="a-meta" id="aMeta"></p>
+        <h1 id="aTitle"></h1>
+        <p class="a-byline" id="aByline"></p>
+        <p class="a-tags" id="aTags"></p>
+      </header>
+      <div id="noText" class="no-text" hidden></div>
+      <div id="content" class="content"></div>
+      <footer class="a-foot" id="aFoot">
+        <p class="muted" id="endInfo"></p>
+        <div class="end-actions">
+          <button type="button" class="primary" id="endArchive" data-icon="archive"><span data-i18n="finishArchive">Прочитано — в архив</span></button>
+          <a class="btn" href="../library/library.html" data-i18n="backToLibrary">В библиотеку</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <aside class="hl-panel" id="hlPanel" hidden aria-label="Выделения" data-i18n-aria="highlightsTitle">
+    <div class="hl-head"><strong data-i18n="highlightsTitle">Выделения и заметки</strong><button type="button" class="icon ghost" id="hlClose" data-icon="close" aria-label="Закрыть" data-i18n-aria="close"></button></div>
+    <p class="muted hl-help" data-i18n="highlightHelp">Выделите текст — появится панель. Клавиша H выделяет без панели.</p>
+    <ol id="hlList" class="hl-list"></ol>
+    <button type="button" id="hlCopy" data-icon="copy" hidden><span data-i18n="copyHighlights">Копировать все</span></button>
+  </aside>
+
+  <div class="hl-pop" id="hlPop" hidden role="toolbar" aria-label="Выделение" data-i18n-aria="highlight">
+    <button type="button" class="dot" data-color="yellow" aria-label="Жёлтый" data-i18n-aria="colorYellow"></button>
+    <button type="button" class="dot" data-color="green" aria-label="Зелёный" data-i18n-aria="colorGreen"></button>
+    <button type="button" class="dot" data-color="blue" aria-label="Синий" data-i18n-aria="colorBlue"></button>
+    <button type="button" class="dot" data-color="pink" aria-label="Розовый" data-i18n-aria="colorPink"></button>
+    <button type="button" class="pop-note" id="popNote" data-icon="note"><span data-i18n="addNote">Заметка</span></button>
+    <button type="button" class="pop-del" id="popDel" data-icon="trash" hidden aria-label="Удалить выделение" data-i18n-aria="deleteHighlight"></button>
+  </div>
+
+  <dialog id="noteDialog">
+    <form method="dialog" id="noteForm">
+      <h2 data-i18n="noteTitle">Заметка к выделению</h2>
+      <blockquote id="noteQuote" class="note-quote"></blockquote>
+      <textarea id="noteText" rows="5"></textarea>
+      <div class="actions">
+        <button type="button" id="noteCancel" data-i18n="cancel">Отмена</button>
+        <button type="submit" class="primary" data-i18n="save">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="tagDialog">
+    <form method="dialog" id="tagForm">
+      <h2 data-i18n="editTags">Теги</h2>
+      <p class="muted" data-i18n="tagHint">Через запятую.</p>
+      <input type="text" id="tagInput" list="tagList" autocomplete="off" style="width:100%">
+      <datalist id="tagList"></datalist>
+      <div class="actions">
+        <button type="button" id="tagCancel" data-i18n="cancel">Отмена</button>
+        <button type="submit" class="primary" data-i18n="save">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="../../vendor/Readability.js"></script>
+  <script src="../content/capture.js"></script>
+  <script type="module" src="reader.js"></script>
+</body>
+</html>

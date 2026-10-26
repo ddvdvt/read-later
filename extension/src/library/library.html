@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="libraryTitle">Библиотека — Прочитать позже</title>
+  <link rel="icon" href="../../icons/icon32.png">
+  <link rel="stylesheet" href="../shared/ui.css">
+  <link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <a class="skip sr-only" href="#list" data-i18n="skipToList">К списку статей</a>
+  <div class="app">
+    <aside class="side" aria-label="Разделы" data-i18n-aria="sections">
+      <div class="brand">
+        <img src="../../icons/icon48.png" width="28" height="28" alt="">
+        <span data-i18n="appName">Прочитать позже</span>
+      </div>
+      <nav class="views" id="views">
+        <button type="button" data-view="unread"><span data-i18n="viewUnread">Непрочитанное</span><span class="count" id="c-unread"></span></button>
+        <button type="button" data-view="favorites"><span data-i18n="viewFavorites">Избранное</span><span class="count" id="c-favorites"></span></button>
+        <button type="button" data-view="highlights"><span data-i18n="viewHighlights">С выделениями</span><span class="count" id="c-highlights"></span></button>
+        <button type="button" data-view="archive"><span data-i18n="viewArchive">Архив</span><span class="count" id="c-archive"></span></button>
+        <button type="button" data-view="all"><span data-i18n="viewAll">Все статьи</span><span class="count" id="c-all"></span></button>
+        <button type="button" data-view="trash"><span data-i18n="viewTrash">Корзина</span><span class="count" id="c-trash"></span></button>
+      </nav>
+      <h2 class="side-h" data-i18n="tags">Теги</h2>
+      <nav class="tags" id="tags"></nav>
+      <div class="side-foot">
+        <a class="btn ghost" href="../options/options.html#import" data-icon="upload"><span data-i18n="importShort">Импорт</span></a>
+        <a class="btn ghost" href="../options/options.html#export" data-icon="download"><span data-i18n="exportShort">Экспорт и копия</span></a>
+        <a class="btn ghost" href="../options/options.html" data-icon="settings"><span data-i18n="settings">Настройки</span></a>
+        <div class="foot-links">
+          <a href="#" target="_blank" rel="noopener" data-brand-link="other" data-i18n="otherExtensions">Другие расширения автора</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="toolbar">
+        <div class="search">
+          <input type="search" id="q" autocomplete="off" data-i18n-placeholder="searchPlaceholder" placeholder="Поиск по тексту статей" aria-label="Поиск" data-i18n-aria="search">
+          <kbd class="search-kbd">/</kbd>
+        </div>
+        <select id="contentFilter" aria-label="Текст" data-i18n-aria="contentFilter">
+          <option value="" data-i18n="filterAll">С текстом и ссылки</option>
+          <option value="full" data-i18n="filterFull">Только с текстом</option>
+          <option value="link" data-i18n="filterLinks">Только ссылки</option>
+        </select>
+        <select id="sort" aria-label="Сортировка" data-i18n-aria="sortLabel">
+          <option value="newest" data-i18n="sortNewest">Сначала новые</option>
+          <option value="oldest" data-i18n="sortOldest">Сначала старые</option>
+          <option value="title" data-i18n="sortTitle">По названию</option>
+          <option value="site" data-i18n="sortSite">По сайту</option>
+          <option value="shortest" data-i18n="sortShortest">Сначала короткие</option>
+          <option value="longest" data-i18n="sortLongest">Сначала длинные</option>
+          <option value="progress" data-i18n="sortProgress">Начатые</option>
+        </select>
+        <div class="seg" role="group" aria-label="Вид" data-i18n-aria="layout">
+          <button type="button" class="icon" id="layoutList" data-icon="list" data-i18n-title="layoutList" title="Список"></button>
+          <button type="button" class="icon" id="layoutGrid" data-icon="grid" data-i18n-title="layoutGrid" title="Карточки"></button>
+        </div>
+        <button type="button" class="icon ghost" id="helpBtn" data-i18n-title="shortcuts" title="Горячие клавиши"><span aria-hidden="true">?</span><span class="sr-only" data-i18n="shortcuts">Горячие клавиши</span></button>
+      </div>
+
+      <div class="banners" id="banners"></div>
+
+      <div class="bulk" id="bulk" hidden>
+        <label class="bulk-all"><input type="checkbox" id="selectAll"> <span id="bulkCount"></span></label>
+        <span class="bulk-actions" id="bulkActions"></span>
+      </div>
+
+      <div class="heading">
+        <h1 id="viewTitle"></h1>
+        <span class="muted" id="viewInfo"></span>
+      </div>
+      <div id="list" class="list" role="list" tabindex="-1"></div>
+      <div class="empty" id="empty" hidden></div>
+      <div class="more"><button type="button" id="moreBtn" hidden data-i18n="showMore">Показать ещё</button></div>
+      <p class="loading muted" id="loading"><span class="spinner"></span> <span data-i18n="loading">Загрузка…</span></p>
+    </main>
+  </div>
+
+  <dialog id="tagDialog">
+    <form method="dialog" id="tagForm">
+      <h2 data-i18n="editTags">Теги</h2>
+      <p class="muted" id="tagHint" data-i18n="tagHint">Через запятую. Новые теги добавятся, снятые флажки — удалят тег.</p>
+      <div id="tagCurrent" class="tag-current"></div>
+      <input type="text" id="tagInput" list="tagList" autocomplete="off" style="width:100%" data-i18n-placeholder="tagPlaceholder" placeholder="например: работа, длинное">
+      <datalist id="tagList"></datalist>
+      <div class="actions">
+        <button type="button" value="cancel" id="tagCancel" data-i18n="cancel">Отмена</button>
+        <button type="submit" value="ok" class="primary" data-i18n="save">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="helpDialog">
+    <h2 data-i18n="shortcuts">Горячие клавиши</h2>
+    <table class="keys">
+      <tr><td><kbd>j</kbd> / <kbd>k</kbd>, <kbd>↓</kbd> / <kbd>↑</kbd></td><td data-i18n="keyMove">Следующая / предыдущая статья</td></tr>
+      <tr><td><kbd>Enter</kbd>, <kbd>o</kbd></td><td data-i18n="keyOpen">Открыть в читалке</td></tr>
+      <tr><td><kbd>x</kbd></td><td data-i18n="keySelect">Выбрать</td></tr>
+      <tr><td><kbd>Shift</kbd>+<kbd>A</kbd></td><td data-i18n="keySelectAll">Выбрать все на экране</td></tr>
+      <tr><td><kbd>e</kbd></td><td data-i18n="keyArchive">В архив / вернуть</td></tr>
+      <tr><td><kbd>f</kbd></td><td data-i18n="keyFavorite">Избранное</td></tr>
+      <tr><td><kbd>t</kbd></td><td data-i18n="keyTags">Теги</td></tr>
+      <tr><td><kbd>Delete</kbd>, <kbd>#</kbd></td><td data-i18n="keyDelete">В корзину</td></tr>
+      <tr><td><kbd>/</kbd></td><td data-i18n="keySearch">Поиск</td></tr>
+      <tr><td><kbd>g</kbd> <kbd>u</kbd> / <kbd>a</kbd> / <kbd>f</kbd></td><td data-i18n="keyGo">Непрочитанное / архив / избранное</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td data-i18n="keyEscape">Сбросить выбор и поиск</td></tr>
+    </table>
+    <div class="actions"><button type="button" class="primary" id="helpClose" data-i18n="close">Закрыть</button></div>
+  </dialog>
+
+  <script src="../../vendor/Readability.js"></script>
+  <script src="../content/capture.js"></script>
+  <script type="module" src="library.js"></script>
+</body>
+</html>
