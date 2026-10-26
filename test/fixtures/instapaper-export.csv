@@ -1,0 +1,4 @@
+URL,Title,Selection,Folder,Timestamp,Tags
+https://insta.example/a,Article A,Some selected text,Unread,1690000000,"[""tech""]"
+https://insta.example/b,Article B,,Archive,1690000100,
+https://insta.example/c,Article C,,Starred,1690000200,
