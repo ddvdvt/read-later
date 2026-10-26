@@ -311,8 +311,8 @@ try {
     await library.goto(ext('src/library/library.html#view=all'));
     await library.waitForSelector('body[data-ready="1"]');
     await library.fill('#q', 'метро самолёт');
-    await library.waitForFunction(() => document.querySelectorAll('#list .row').length === 1);
-    assert.match(await library.textContent('#list .row .title'), /Как вернуть привычку/);
+    // both articles mention the metro and the plane (the cp1251 one got its text in the previous step)
+    await library.waitForFunction(() => [...document.querySelectorAll('#list .row .title')].map((x) => x.textContent).sort().join('|') === 'Заметки в старой кодировке|Как вернуть привычку читать длинные статьи');
     await library.fill('#q', 'checklist');
     await library.waitForFunction(() => document.querySelector('#list .row .title')?.textContent === 'Why offline reading matters');
     await library.fill('#q', '');
