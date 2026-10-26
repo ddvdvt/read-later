@@ -5,6 +5,11 @@ import { t } from './i18n.js';
 /** @param {string} sel @param {ParentNode} [root] @returns {any} */
 export const $ = (sel, root = document) => root.querySelector(sel);
 
+/** Nodes of trusted, extension-generated markup, parsed in an inert document. @param {string} html */
+function markup(html) {
+  return [...new DOMParser().parseFromString(html, 'text/html').body.childNodes];
+}
+
 /**
  * Element builder: el('a', { href, class: 'x', onclick }, 'text', child).
  * @param {string} tag
@@ -19,7 +24,7 @@ export function el(tag, attrs, ...children) {
     if (k.startsWith('on') && typeof v === 'function') e.addEventListener(k.slice(2), v);
     else if (k === 'class') e.className = v;
     else if (k === 'dataset') Object.assign(e.dataset, v);
-    else if (k === 'html') e.innerHTML = v; // only for trusted, extension-generated markup (icons)
+    else if (k === 'html') e.replaceChildren(...markup(v)); // only for trusted, extension-generated markup (icons)
     else e.setAttribute(k, v === true ? '' : String(v));
   }
   for (const c of children.flat()) if (c !== null && c !== undefined && c !== false) e.append(c instanceof Node ? c : String(c));
@@ -75,7 +80,7 @@ export function icon(name, filled = false) {
 export function applyIcons(root = document) {
   root.querySelectorAll('[data-icon]').forEach((e) => {
     if (e.querySelector('svg')) return;
-    e.insertAdjacentHTML('afterbegin', icon(/** @type {any} */ (e.getAttribute('data-icon'))));
+    e.prepend(...markup(icon(/** @type {any} */ (e.getAttribute('data-icon')))));
   });
 }
 

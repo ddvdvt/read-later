@@ -11,7 +11,9 @@ import { findByUrl, getItem, putRecord } from './db.js';
 /** @typedef {import('../../lib/model.js').Item} Item */
 /** @typedef {Awaited<ReturnType<typeof import('../../lib/article.js').buildArticle>>} Built */
 
-export const CAPTURE_FILES = ['vendor/Readability.js', 'src/content/capture.js'];
+// Absolute paths: Firefox resolves relative `files` against the calling page (e.g. src/library/),
+// Chrome against the extension root; with a leading slash both mean the extension root.
+export const CAPTURE_FILES = ['/vendor/Readability.js', '/src/content/capture.js'];
 
 /** @returns {Promise<import('../../lib/settings.js').Settings>} */
 export async function loadSettings() {

@@ -163,7 +163,9 @@ function renderContent() {
   $('#noText').hidden = true;
   $('#aFoot').hidden = false;
   // The stored HTML was sanitized when saved; sanitize again in case it came from a backup file.
-  contentEl.innerHTML = treeToHtml(sanitizeTree(parseHtml(content.html)));
+  // parsed in an inert document, then moved in (no innerHTML on a live page)
+  const parsed = new DOMParser().parseFromString(treeToHtml(sanitizeTree(parseHtml(content.html))), 'text/html');
+  contentEl.replaceChildren(...parsed.body.childNodes);
   for (const a of contentEl.querySelectorAll('a[href]')) {
     a.target = '_blank';
     a.rel = 'noopener noreferrer';

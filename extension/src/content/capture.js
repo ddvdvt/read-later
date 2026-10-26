@@ -34,10 +34,9 @@
    * @param {number} budget bytes
    */
   async function grabImages(html, budget) {
-    const tpl = document.createElement('template'); // inert: nothing is loaded or executed
-    tpl.innerHTML = html;
+    const tpl = new DOMParser().parseFromString(html, 'text/html'); // inert: nothing is loaded or executed
     const urls = [];
-    for (const img of tpl.content.querySelectorAll('img')) {
+    for (const img of tpl.querySelectorAll('img')) {
       const src = img.getAttribute('src') || '';
       if (/^https?:\/\//i.test(src) && !urls.includes(src)) urls.push(src);
       if (urls.length >= 40) break;
