@@ -8,7 +8,7 @@
 // fails until both match.
 
 /** Base URL of the brand site, with a trailing slash. */
-export const BASE = 'https://USER.github.io/REPO/';
+export const BASE = 'https://ddvdvt.github.io/';
 
 /** Page slug of this extension on the brand site. */
 export const SLUG = 'read-later';
