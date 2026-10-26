@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseHtml, decodeEntities, h, isEl } from '../extension/lib/html.js';
-import { sanitizeTree, treeToHtml, treeToText, treeToMarkdown, flatText, imagesOf, safeHref, safeSrc, mdEscape } from '../extension/lib/tree.js';
+import { sanitizeTree, treeToHtml, treeToText, treeToMarkdown, flatText, imagesOf, safeHref, safeSrc, mdEscape, dropTitleHeading } from '../extension/lib/tree.js';
 
 const clean = (html, base = 'https://example.com/a/b.html') => treeToHtml(sanitizeTree(parseHtml(html), { base }));
 
@@ -122,4 +122,17 @@ test('treeToMarkdown: headings, emphasis, links, lists, quotes, code, tables, im
 
 test('mdEscape escapes control characters', () => {
   assert.equal(mdEscape('# a_b [c]'), '\\# a\\_b \\[c\\]');
+});
+
+test('dropTitleHeading removes a heading that repeats the title', () => {
+  const tree = sanitizeTree(parseHtml('<div><div><h1>My  Title</h1><p>Body</p></div></div>'));
+  assert.equal(treeToHtml(dropTitleHeading(tree, 'my title')), '<div><div><p>Body</p></div></div>');
+  const other = sanitizeTree(parseHtml('<p>Intro</p><h1>My Title</h1>'));
+  assert.equal(dropTitleHeading(other, 'My Title'), other);
+});
+
+test('sanitize drops small ad / share / newsletter boxes but keeps big content', () => {
+  assert.equal(clean('<p>Text</p><div class="ad">Buy now!</div><div class="post-share">Share</div><aside id="newsletter-box">Subscribe</aside><p class="shadow">ok</p>'), '<p>Text</p><p>ok</p>');
+  const long = 'word '.repeat(300);
+  assert.match(clean(`<div class="related-content">${long}</div>`), /word word/);
 });

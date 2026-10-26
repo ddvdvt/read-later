@@ -457,7 +457,7 @@ export function buildImportRecord(row, now = Date.now()) {
   if (!item) item = makeItem(base, now);
   /** @type {import('./highlights.js').Highlight[]} */
   const highlights = [];
-  if (content && row.highlights) {
+  if (content && Array.isArray(row.highlights)) {
     const flat = flatText(parseHtml(content.html));
     for (const h of row.highlights) {
       const exact = String(h.exact || '').trim();

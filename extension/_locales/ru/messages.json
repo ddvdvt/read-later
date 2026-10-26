@@ -854,11 +854,8 @@
   "statPersistent": {
     "message": "Защита от автоочистки"
   },
-  "statPersistentNo": {
-    "message": "нет (браузер может очистить данные при нехватке места)"
-  },
-  "yes": {
-    "message": "да"
+  "statPersistentYes": {
+    "message": "да: данные расширения не удаляются браузером при нехватке места"
   },
   "siteAccess": {
     "message": "Доступ к сайтам"

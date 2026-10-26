@@ -26,6 +26,9 @@ const DROP = new Set([
   'audio', 'map', 'area', 'dialog', 'frame', 'frameset', 'nav', 'menu', 'param', 'slot',
 ]);
 
+/** class/id tokens of page furniture that sometimes survives Readability (ads, share bars…). */
+const JUNK = /(?:^|[\s_-])(?:ad|ads|adv|advert|adverts|advertisement|advertising|adsbygoogle|sponsor|sponsored|promo|promoted|share|sharing|social|newsletter|subscribe|subscription|related|outbrain|taboola|paywall|cookie|cookies|consent)(?=$|[\s_-])/i;
+
 const BLOCK = new Set([
   'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'figure',
   'figcaption', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'caption', 'hr', 'div', 'details', 'summary',
@@ -162,6 +165,8 @@ export function sanitizeTree(nodes, opts = {}) {
       let tag = n.tag;
       if (tag.includes(':') || DROP.has(tag)) continue;
       if (n.attrs && (n.attrs.hidden !== undefined || n.attrs['aria-hidden'] === 'true') && tag !== 'img') continue;
+      // small boxes marked as ads / share bars / newsletter forms (big ones may be the article itself)
+      if (n.attrs && JUNK.test(`${n.attrs.class || ''} ${n.attrs.id || ''}`) && rawText(n).length < 800) continue;
       tag = /** @type {Record<string,string>} */ (RENAME)[tag] || tag;
       if (tag === 'iframe' || tag === 'video') {
         const src = safeHref(resolveUrl((n.attrs && (n.attrs.src || n.attrs['data-src'])) || '', base));
@@ -198,6 +203,32 @@ function trimBlocks(nodes) {
     return out.filter((n) => !(blocky && typeof n === 'string' && !/\S/.test(n)));
   };
   return fix(nodes, false);
+}
+
+/**
+ * Remove a leading <h1>/<h2> that repeats the article title (the reader shows the title itself).
+ * @param {TreeNode[]} nodes sanitized tree
+ * @param {string} title
+ * @returns {TreeNode[]}
+ */
+export function dropTitleHeading(nodes, title) {
+  const norm = (s) => String(s).replace(/\s+/g, ' ').trim().toLowerCase();
+  const want = norm(title);
+  if (!want) return nodes;
+  /** @param {TreeNode[]} list @returns {TreeNode[] | null} */
+  const visit = (list) => {
+    const idx = list.findIndex((n) => isEl(n) || /\S/.test(n));
+    if (idx < 0) return null;
+    const first = list[idx];
+    if (!isEl(first)) return null;
+    if ((first.tag === 'h1' || first.tag === 'h2') && norm(rawText(first)) === want) return [...list.slice(0, idx), ...list.slice(idx + 1)];
+    if (first.tag === 'div') {
+      const inner = visit(first.children);
+      if (inner) return [...list.slice(0, idx), { ...first, children: inner }, ...list.slice(idx + 1)];
+    }
+    return null;
+  };
+  return visit(nodes) || nodes;
 }
 
 /** @param {string} url */

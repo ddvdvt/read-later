@@ -2,7 +2,7 @@
 // saving preferences, storage usage, site access, deleting everything.
 import { applyI18n, t } from '../shared/i18n.js';
 import { wireBrandLinks } from '../shared/brand-link.js';
-import { $, el, applyIcons, toast, getSettings, saveSettings, confirmDialog, uiLocale } from '../shared/ui.js';
+import { $, el, fill, applyIcons, toast, getSettings, saveSettings, confirmDialog, uiLocale } from '../shared/ui.js';
 import { getAllItems, putRecords, deleteForever, clearAll, getAllImages, updateItems } from '../shared/db.js';
 import { exportJson, exportBookmarks, exportMarkdown, backupState } from '../shared/backup.js';
 import { dataUrlToBlob } from '../shared/save.js';
@@ -55,7 +55,7 @@ let importing = false;
 function preview(...children) {
   const box = $('#preview');
   box.hidden = false;
-  box.replaceChildren(...children);
+  fill(box, ...children);
   box.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 
@@ -347,7 +347,7 @@ $('#bmLoad').addEventListener('click', async () => {
   }
   bmTree = await chrome.bookmarks.getTree();
   const folders = bookmarkFolders(bmTree);
-  $('#bmFolder').replaceChildren(...folders.map((f) => el('option', { value: f.id }, `${'— '.repeat(f.depth)}${f.title || '…'} (${f.count})`)));
+  fill($('#bmFolder'), ...folders.map((f) => el('option', { value: f.id }, `${'— '.repeat(f.depth)}${f.title || '…'} (${f.count})`)));
   $('#bmPick').hidden = false;
   $('#bmLoad').hidden = true;
 });
@@ -404,21 +404,19 @@ async function refreshStats() {
   const imgBytes = images.reduce((s, i) => s + (i.size || 0), 0);
   /** @type {StorageEstimate} */
   let est = {};
-  let persisted = false;
   try {
     est = await navigator.storage.estimate();
-    persisted = await navigator.storage.persisted();
   } catch {
     /* unavailable */
   }
   const row = (k, v) => [el('dt', null, k), el('dd', null, v)];
-  $('#stats').replaceChildren(
+  fill($('#stats'), 
     ...row(t('statArticles'), `${c.all} (${t('statUnread', [String(c.unread)])}, ${t('statArchive', [String(c.archive)])})`),
     ...row(t('statLinks'), String(c.links)),
     ...row(t('statImages'), `${images.length} · ${formatBytes(imgBytes, locale)}`),
     ...row(t('statTrash'), String(c.trash)),
     ...row(t('statUsage'), est.usage !== undefined ? `${formatBytes(est.usage || 0, locale)}${est.quota ? ` / ${formatBytes(est.quota, locale)}` : ''}` : '—'),
-    ...row(t('statPersistent'), persisted ? t('yes') : t('statPersistentNo')),
+    ...row(t('statPersistent'), t('statPersistentYes')),
   );
   $('#emptyTrash').disabled = !c.trash;
 }

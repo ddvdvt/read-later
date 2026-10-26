@@ -1,7 +1,7 @@
 // Reader: clean article view with typography settings, saved reading position, highlights with
 // notes, offline images, actions (favorite, archive, tags, original, Markdown copy, re-fetch).
 import { applyI18n, t } from '../shared/i18n.js';
-import { $, el, applyIcons, toast, formatDate, formatMinutes, getSettings, saveSettings, onSettingsChange, copyText, uiLocale } from '../shared/ui.js';
+import { $, el, fill, applyIcons, toast, formatDate, formatMinutes, getSettings, saveSettings, onSettingsChange, copyText, uiLocale } from '../shared/ui.js';
 import { getItem, getContent, getImages, getHighlights, putHighlight, deleteHighlight, updateItems, actOn, editTags, getAllItems, onDbChange } from '../shared/db.js';
 import { originsFor, requestOrigins, releaseOrigins, loadTexts } from '../shared/fetch-text.js';
 import { parseHtml } from '../../lib/html.js';
@@ -117,7 +117,7 @@ function renderHeader() {
   if (item.lang) $('#article').lang = item.lang;
   const meta = $('#aMeta');
   const minutes = item.content === 'full' ? formatMinutes(itemMinutes(item, settings.wpm)) : '';
-  meta.replaceChildren(
+  fill(meta, 
     el('a', { href: item.url, target: '_blank', rel: 'noopener noreferrer' }, item.site),
     item.publishedAt ? el('span', null, new Date(item.publishedAt).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })) : null,
     minutes ? el('span', null, minutes) : null,
@@ -126,7 +126,7 @@ function renderHeader() {
   );
   $('#aByline').textContent = item.byline;
   $('#aByline').hidden = !item.byline;
-  $('#aTags').replaceChildren(...item.tags.map((tg) => el('a', { class: 'chip', href: `../library/library.html#view=all&tag=${encodeURIComponent(tg)}` }, `#${tg}`)));
+  fill($('#aTags'), ...item.tags.map((tg) => el('a', { class: 'chip', href: `../library/library.html#view=all&tag=${encodeURIComponent(tg)}` }, `#${tg}`)));
   $('#origBtn').href = stripTracking(item.url);
   const fav = $('#favBtn');
   fav.classList.toggle('on', item.favorite);
@@ -145,7 +145,7 @@ function renderNoText() {
   const box = $('#noText');
   if (!item) return;
   box.hidden = false;
-  box.replaceChildren(
+  fill(box, 
     el('h2', null, item.content === 'failed' ? t('noTextFailedTitle') : t('noTextTitle')),
     el('p', null, item.excerpt || ''),
     el('p', { class: 'muted' }, t('noTextExplain')),
@@ -154,7 +154,7 @@ function renderNoText() {
       el('a', { class: 'btn', href: stripTracking(item.url), target: '_blank', rel: 'noopener noreferrer' }, t('openOriginal')),
     ),
   );
-  contentEl.replaceChildren();
+  fill(contentEl);
   $('#aFoot').hidden = true;
 }
 
@@ -233,7 +233,7 @@ function applyHighlights() {
 function renderHlList() {
   const list = $('#hlList');
   const sorted = [...highlights].sort((a, b) => a.start - b.start);
-  list.replaceChildren(
+  fill(list, 
     ...sorted.map((h) =>
       el('li', { 'data-color': h.color, tabindex: '0', onclick: () => jumpTo(h.id), onkeydown: (e) => e.key === 'Enter' && jumpTo(h.id) },
         el('div', { class: 'q' }, h.exact),
@@ -242,7 +242,7 @@ function renderHlList() {
       ),
     ),
   );
-  if (!sorted.length) list.replaceChildren(el('li', { class: 'muted', style: 'border:0;cursor:default' }, t('noHighlights')));
+  if (!sorted.length) fill(list, el('li', { class: 'muted', style: 'border:0;cursor:default' }, t('noHighlights')));
   $('#hlCopy').hidden = !sorted.length;
   $('#hlListBtn').title = `${t('highlightsTitle')}${sorted.length ? ` (${sorted.length})` : ''}`;
 }
@@ -505,7 +505,7 @@ $('#refetch').addEventListener('click', () => {
 $('#tagBtn').addEventListener('click', async () => {
   if (!item) return;
   $('#tagInput').value = item.tags.join(', ');
-  $('#tagList').replaceChildren(...tagCounts(await getAllItems()).map(([n]) => el('option', { value: n })));
+  fill($('#tagList'), ...tagCounts(await getAllItems()).map(([n]) => el('option', { value: n })));
   $('#tagDialog').showModal();
   $('#tagInput').focus();
 });
@@ -526,7 +526,7 @@ async function fetchText() {
     return;
   }
   const btn = document.getElementById('loadTextBtn');
-  if (btn) btn.replaceChildren(el('span', { class: 'spinner' }), t('loadingText'));
+  if (btn) fill(btn, el('span', { class: 'spinner' }), t('loadingText'));
   toast(t('loadingText'), { ms: 20000 });
   try {
     const r = await loadTexts([{ id: item.id, url: item.url }], settings);
@@ -595,7 +595,7 @@ document.addEventListener('keydown', (e) => {
 async function load() {
   item = await getItem(id);
   if (!item) {
-    $('#loading').replaceChildren(el('span', null, t('notFound')), ' ', el('a', { href: '../library/library.html' }, t('backToLibrary')));
+    fill($('#loading'), el('span', null, t('notFound')), ' ', el('a', { href: '../library/library.html' }, t('backToLibrary')));
     return;
   }
   content = await getContent(id);
@@ -620,7 +620,7 @@ try {
   }
   if (item && item.content === 'full' && !item.lastReadAt) updateItems([id], (it) => ({ ...it, lastReadAt: Date.now() }), { silent: true });
 } catch (e) {
-  $('#loading').replaceChildren(el('span', { class: 'banner error' }, `${t('errLoad')}: ${String((e && /** @type {any} */ (e).message) || e)}`));
+  fill($('#loading'), el('span', { class: 'banner error' }, `${t('errLoad')}: ${String((e && /** @type {any} */ (e).message) || e)}`));
 }
 restoreUntil = Date.now() + 500;
 document.body.dataset.ready = item ? '1' : '0';

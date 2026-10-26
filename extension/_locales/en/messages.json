@@ -854,11 +854,8 @@
   "statPersistent": {
     "message": "Protected from cleanup"
   },
-  "statPersistentNo": {
-    "message": "no (the browser may clear data when the disk is full)"
-  },
-  "yes": {
-    "message": "yes"
+  "statPersistentYes": {
+    "message": "yes: the browser does not clear extension data when the disk is low"
   },
   "siteAccess": {
     "message": "Website access"

@@ -26,6 +26,15 @@ export function el(tag, attrs, ...children) {
   return e;
 }
 
+/**
+ * Replace the children of a node, skipping null/undefined/false (replaceChildren would print "null").
+ * @param {Element} node
+ * @param {...any} children
+ */
+export function fill(node, ...children) {
+  node.replaceChildren(...children.flat().filter((c) => c !== null && c !== undefined && c !== false));
+}
+
 const ICONS = {
   save: '<path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/>',
   star: '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',

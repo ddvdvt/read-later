@@ -76,7 +76,8 @@ button.danger { color: var(--err-ink); border-color: color-mix(in srgb, var(--er
 button.ghost { background: transparent; border-color: transparent; }
 button.ghost:hover:not(:disabled) { background: var(--bg-2); border-color: transparent; }
 button.icon { padding: 4px; width: 32px; height: 32px; justify-content: center; }
-button.icon svg, .btn svg { width: 18px; height: 18px; flex: none; }
+button svg, .btn svg { width: 18px; height: 18px; flex: none; }
+button, .btn { white-space: nowrap; }
 button[aria-pressed="true"] { background: var(--bg-2); border-color: var(--ink-3); }
 
 input[type="text"], input[type="search"], input[type="url"], input[type="number"], select, textarea {

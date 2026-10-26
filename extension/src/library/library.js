@@ -3,7 +3,7 @@
 // loading text for links, saving several selected tabs.
 import { applyI18n, t } from '../shared/i18n.js';
 import { wireBrandLinks } from '../shared/brand-link.js';
-import { $, el, icon, applyIcons, toast, formatDate, formatMinutes, getSettings, saveSettings, confirmDialog, uiLocale } from '../shared/ui.js';
+import { $, el, fill, icon, applyIcons, toast, formatDate, formatMinutes, getSettings, saveSettings, confirmDialog, uiLocale } from '../shared/ui.js';
 import { getAllItems, getAllTerms, actOn, editTags, deleteForever, purgeTrash, onDbChange, getContents } from '../shared/db.js';
 import { exportJson, backupState, snoozeBackup } from '../shared/backup.js';
 import { originsFor, requestOrigins, releaseOrigins, loadTexts, saveTabs, ALL_SITES } from '../shared/fetch-text.js';
@@ -106,10 +106,10 @@ function renderSide() {
   const untagged = state.items.filter((i) => !i.deletedAt && !i.tags.length).length;
   const box = $('#tags');
   if (!tags.length) {
-    box.replaceChildren(el('p', { class: 'none' }, t('noTags')));
+    fill(box, el('p', { class: 'none' }, t('noTags')));
     return;
   }
-  box.replaceChildren(
+  fill(box, 
     ...tags.map(([name, n]) =>
       el('button', { type: 'button', 'aria-current': String(state.tag === name), onclick: () => setTag(state.tag === name ? '' : name) }, el('span', { class: 'tag-name' }, `#${name}`), el('span', { class: 'count' }, String(n))),
     ),
@@ -138,7 +138,7 @@ function render(opts = {}) {
   document.title = `${title} — ${t('appName')}`;
   const total = state.results.length;
   const info = $('#viewInfo');
-  info.replaceChildren(plural(total, t('articlesPlural'), locale));
+  fill(info, plural(total, t('articlesPlural'), locale));
   if (state.view === 'trash' && total) {
     info.append(' · ', t('trashInfo'), ' ');
     info.append(el('button', { type: 'button', class: 'ghost danger', onclick: emptyTrash }, t('emptyTrash')));
@@ -147,7 +147,7 @@ function render(opts = {}) {
     info.append(' ', el('button', { type: 'button', class: 'primary', onclick: () => fetchTexts(state.results.filter((i) => i.content !== 'full')) }, t('loadTextAll')));
   }
   const visible = state.results.slice(0, state.shown);
-  list.replaceChildren(...visible.map((it, i) => rowEl(it, i)));
+  fill(list, ...visible.map((it, i) => rowEl(it, i)));
   $('#moreBtn').hidden = total <= state.shown;
   renderEmpty(total);
   if (!opts.keepCursor) state.cursor = Math.min(state.cursor, visible.length - 1);
@@ -179,16 +179,16 @@ function renderEmpty(total) {
   box.hidden = total > 0;
   if (total) return;
   if (!state.items.filter((i) => !i.deletedAt).length && state.view !== 'trash') {
-    box.replaceChildren(
+    fill(box, 
       el('h2', null, t('emptyLibraryTitle')),
       el('p', null, t('emptyLibraryText')),
       el('p', { class: 'muted' }, t('emptyLibraryImport')),
       el('a', { class: 'btn primary', href: '../options/options.html#import' }, t('importShort')),
     );
-  } else if (state.q) box.replaceChildren(el('h2', null, t('noResults')), el('p', null, t('noResultsHint')));
-  else if (state.view === 'trash') box.replaceChildren(el('h2', null, t('trashEmpty')), el('p', null, t('trashInfoLong')));
-  else if (state.view === 'unread') box.replaceChildren(el('h2', null, t('allRead')), el('p', null, t('allReadHint')));
-  else box.replaceChildren(el('h2', null, t('nothingHere')));
+  } else if (state.q) fill(box, el('h2', null, t('noResults')), el('p', null, t('noResultsHint')));
+  else if (state.view === 'trash') fill(box, el('h2', null, t('trashEmpty')), el('p', null, t('trashInfoLong')));
+  else if (state.view === 'unread') fill(box, el('h2', null, t('allRead')), el('p', null, t('allReadHint')));
+  else fill(box, el('h2', null, t('nothingHere')));
 }
 
 /** @param {Item} it @param {number} i */
@@ -274,13 +274,13 @@ function renderBulk() {
   const b = (label, fn, cls = '') => el('button', { type: 'button', class: cls, onclick: fn }, label);
   const box = $('#bulkActions');
   if (state.view === 'trash') {
-    box.replaceChildren(b(t('restore'), () => doAction(ids, 'restore')), b(t('deleteForever'), () => removeForever(ids), 'danger'), b(t('clearSelection'), clearSelection, 'ghost'));
+    fill(box, b(t('restore'), () => doAction(ids, 'restore')), b(t('deleteForever'), () => removeForever(ids), 'danger'), b(t('clearSelection'), clearSelection, 'ghost'));
     return;
   }
   const anyUnread = items.some((i) => i && i.status === 'unread');
   const anyNotFav = items.some((i) => i && !i.favorite);
   const links = items.filter((i) => i && i.content !== 'full');
-  box.replaceChildren(
+  fill(box, 
     anyUnread ? b(t('archive'), () => doAction(ids, 'archive')) : b(t('unarchive'), () => doAction(ids, 'unarchive')),
     anyNotFav ? b(t('favorite'), () => doAction(ids, 'favorite')) : b(t('unfavorite'), () => doAction(ids, 'unfavorite')),
     b(t('editTags'), () => openTags(ids)),
@@ -323,7 +323,7 @@ function renderBanners() {
     );
   }
   if (quota !== 'ok') out.push(el('div', { class: `banner ${quota === 'critical' ? 'error' : ''}` }, el('span', { class: 'grow' }, t(quota === 'critical' ? 'quotaCritical' : 'quotaWarn', [quotaText]))));
-  box.replaceChildren(...out);
+  fill(box, ...out);
 }
 
 async function checkBanners() {
@@ -437,10 +437,10 @@ function openTags(ids) {
   const any = new Set();
   for (const it of items) for (const tg of /** @type {Item} */ (it).tags) any.add(tg);
   for (const tg of [...common]) if (!items.every((it) => /** @type {Item} */ (it).tags.includes(tg))) common.delete(tg);
-  $('#tagCurrent').replaceChildren(
+  fill($('#tagCurrent'), 
     ...[...any].map((tg) => el('label', { class: 'chip' }, el('input', { type: 'checkbox', checked: common.has(tg), 'data-tag': tg, 'data-partial': common.has(tg) ? '' : '1' }), `#${tg}`)),
   );
-  $('#tagList').replaceChildren(...tagCounts(state.items).map(([n]) => el('option', { value: n })));
+  fill($('#tagList'), ...tagCounts(state.items).map(([n]) => el('option', { value: n })));
   $('#tagInput').value = '';
   $('#tagHint').textContent = ids.length > 1 ? t('tagHintMany', [String(ids.length)]) : t('tagHint');
   $('#tagDialog').showModal();
@@ -702,6 +702,6 @@ async function init() {
 }
 
 init().catch((e) => {
-  $('#loading').replaceChildren(el('span', { class: 'banner error' }, `${t('errLoad')}: ${String((e && e.message) || e)}`));
+  fill($('#loading'), el('span', { class: 'banner error' }, `${t('errLoad')}: ${String((e && e.message) || e)}`));
   document.body.dataset.ready = '0';
 });

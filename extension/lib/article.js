@@ -1,7 +1,7 @@
 // Turns a raw capture (Readability output + page metadata) into what we store:
 // sanitized HTML, plain text, word count, reading time, excerpt, lead image.
 import { parseHtml } from './html.js';
-import { sanitizeTree, treeToHtml, treeToText, imagesOf, safeSrc, resolveUrl } from './tree.js';
+import { sanitizeTree, treeToHtml, treeToText, imagesOf, safeSrc, resolveUrl, dropTitleHeading } from './tree.js';
 import { displayHost, titleFromUrl, normalizeUrl } from './url.js';
 
 /**
@@ -131,8 +131,9 @@ export function buildArticle(cap) {
   /** @type {string[]} */
   let images = [];
   const raw = typeof cap.content === 'string' ? cap.content.slice(0, MAX_HTML) : '';
+  const title = cleanTitle(cap.title || '', cap.siteName, cap.h1) || titleFromUrl(url);
   if (raw) {
-    const tree = sanitizeTree(parseHtml(raw), { base: url });
+    const tree = dropTitleHeading(sanitizeTree(parseHtml(raw), { base: url }), title);
     html = treeToHtml(tree);
     text = treeToText(tree);
     images = imagesOf(tree);
@@ -141,7 +142,7 @@ export function buildArticle(cap) {
   const words = countWords(text);
   const lead = safeSrc(cap.leadImage ? resolveUrl(cap.leadImage, url) : '') || images[0] || '';
   return {
-    title: cleanTitle(cap.title || '', cap.siteName, cap.h1) || titleFromUrl(url),
+    title,
     byline: clean(cap.byline, 200),
     site: clean(cap.siteName, 120) || displayHost(url),
     excerpt: makeExcerpt(cap.excerpt && clean(cap.excerpt, 2000).length > 30 ? cap.excerpt : text || cap.excerpt || ''),

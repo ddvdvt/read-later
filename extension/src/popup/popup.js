@@ -1,8 +1,8 @@
 // Popup: save the current page, save several selected tabs, recent items, open the library.
 import { applyI18n, t } from '../shared/i18n.js';
 import { wireBrandLinks } from '../shared/brand-link.js';
-import { $, el, applyIcons, formatMinutes, getSettings } from '../shared/ui.js';
-import { getAllItems, findByUrl, actOn } from '../shared/db.js';
+import { $, el, fill, applyIcons, formatMinutes, getSettings } from '../shared/ui.js';
+import { getAllItems, findByUrl, actOn, getItem } from '../shared/db.js';
 import { isSavableUrl, normalizeUrl, displayHost } from '../../lib/url.js';
 import { viewCounts, itemMinutes, sortItems } from '../../lib/model.js';
 
@@ -22,11 +22,13 @@ function status(text, kind = 'ok', busy = false) {
   const s = $('#status');
   s.hidden = !text;
   s.className = `status ${kind}`;
-  s.replaceChildren(...(busy ? [el('span', { class: 'spinner' })] : []), el('span', null, text));
+  fill(s, ...(busy ? [el('span', { class: 'spinner' })] : []), el('span', null, text));
 }
 
-function showSaved(id) {
+/** @param {string} id @param {string} [title] clean article title */
+function showSaved(id, title) {
   savedId = id;
+  if (title) $('#pageTitle').textContent = title;
   $('#savedActions').hidden = false;
   $('#readNow').href = readerUrl(id);
   $('#saveLabel').textContent = t('saveAgain');
@@ -36,9 +38,9 @@ async function renderRecent() {
   const items = await getAllItems();
   const counts = viewCounts(items);
   $('#libraryLabel').textContent = counts.unread ? t('openLibraryCount', [String(counts.unread)]) : t('openLibrary');
-  const recent = sortItems(items.filter((i) => !i.deletedAt && i.status === 'unread'), 'newest').slice(0, 5);
+  const recent = sortItems(items.filter((i) => !i.deletedAt && i.status === 'unread'), 'newest').slice(0, 4);
   const settings = await getSettings();
-  $('#recent').replaceChildren(
+  fill($('#recent'), 
     ...recent.map((i) =>
       el('li', null,
         el('a', { href: readerUrl(i.id), target: '_blank' },
@@ -67,7 +69,7 @@ async function init() {
     $('#saveBtn').disabled = false;
     const existing = await findByUrl(normalizeUrl(url));
     if (existing && !existing.deletedAt) {
-      showSaved(existing.id);
+      showSaved(existing.id, existing.title);
       status(existing.status === 'archived' ? t('alreadyArchived') : t('alreadySaved'), 'ok');
     }
   }
@@ -99,7 +101,7 @@ $('#saveBtn').addEventListener('click', async () => {
   try {
     const r = await chrome.runtime.sendMessage({ type: 'save-tab', tabId: tab.id });
     if (!r || !r.ok) throw new Error((r && r.error) || 'save failed');
-    showSaved(r.id);
+    showSaved(r.id, (await getItem(r.id))?.title);
     status(!r.created ? t('toastUpdated') : r.hasText ? t('toastSaved') : t('toastSavedLink'), r.hasText ? 'ok' : 'warn');
     await renderRecent();
     const settings = await getSettings();

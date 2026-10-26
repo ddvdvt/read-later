@@ -33,7 +33,7 @@ const fail = (m) => {
 if (!names.includes('manifest.json')) fail('manifest.json is not at the root');
 for (const l of readdirSync(join(ext, '_locales'))) if (!names.includes(`_locales/${l}/messages.json`)) fail(`locale ${l} missing`);
 for (const n of names) {
-  if (n.includes('\')) fail(`backslash in ${n}`);
+  if (n.includes(String.fromCharCode(92))) fail(`backslash in ${n}`);
   if (n.split('/').some((p) => p.startsWith('.'))) fail(`dotfile ${n}`);
   if (/(^|\/)(node_modules|test|e2e)\//.test(n)) fail(`dev file ${n}`);
 }
