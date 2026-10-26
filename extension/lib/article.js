@@ -16,6 +16,7 @@ import { displayHost, titleFromUrl, normalizeUrl } from './url.js';
  * @property {string} [dir]
  * @property {string} [content]     article HTML (null/empty → saved as a link)
  * @property {string} [leadImage]   og:image or similar
+ * @property {string} [h1]          text of the first <h1>
  */
 
 /**
@@ -97,6 +98,28 @@ export function isoDate(s) {
 }
 
 /**
+ * Remove the site name from a page title ("Article — Site", "Site | Article"); prefer the page's
+ * <h1> when the title merely decorates it.
+ * @param {string} title
+ * @param {string} [site]
+ * @param {string} [h1]
+ */
+export function cleanTitle(title, site = '', h1 = '') {
+  const t = clean(title);
+  const head = clean(h1);
+  if (head.length >= 8 && t.length > head.length && t.toLowerCase().includes(head.toLowerCase())) return head;
+  const s = clean(site).toLowerCase();
+  if (s) {
+    const parts = t.split(/\s+[|—–\-·:»/]+\s+/);
+    if (parts.length > 1) {
+      if (parts[parts.length - 1].toLowerCase() === s) return parts.slice(0, -1).join(' — ');
+      if (parts[0].toLowerCase() === s) return parts.slice(1).join(' — ');
+    }
+  }
+  return t;
+}
+
+/**
  * Build the stored article from a capture.
  * @param {Capture} cap
  * @returns {Built}
@@ -118,7 +141,7 @@ export function buildArticle(cap) {
   const words = countWords(text);
   const lead = safeSrc(cap.leadImage ? resolveUrl(cap.leadImage, url) : '') || images[0] || '';
   return {
-    title: clean(cap.title) || titleFromUrl(url),
+    title: cleanTitle(cap.title || '', cap.siteName, cap.h1) || titleFromUrl(url),
     byline: clean(cap.byline, 200),
     site: clean(cap.siteName, 120) || displayHost(url),
     excerpt: makeExcerpt(cap.excerpt && clean(cap.excerpt, 2000).length > 30 ? cap.excerpt : text || cap.excerpt || ''),

@@ -110,7 +110,7 @@ mark.hl.flash { outline: 2px solid var(--accent); }
 .hl-pop .pop-note, .hl-pop .pop-del { background: transparent; color: var(--bg); border-color: color-mix(in srgb, var(--bg) 35%, transparent); min-height: 28px; padding: 3px 8px; }
 
 .hl-panel {
-  position: fixed; right: 0; top: 0; bottom: 0; width: min(360px, 92vw); z-index: 35; background: var(--card);
+  position: fixed; right: 0; top: 49px; bottom: 0; width: min(360px, 92vw); z-index: 15; background: var(--card);
   border-left: 1px solid var(--line); box-shadow: var(--shadow); padding: 14px; overflow: auto; display: flex; flex-direction: column; gap: 10px;
 }
 .hl-head { display: flex; align-items: center; justify-content: space-between; }

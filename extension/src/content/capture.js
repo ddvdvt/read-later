@@ -82,11 +82,13 @@
       dir: '',
       content: '',
       leadImage: '',
+      h1: '',
       images: /** @type {Array<{url: string, type: string, data: string}>} */ ([]),
       error: '',
     };
     try {
       result.lang = (doc.documentElement.getAttribute('lang') || '').trim();
+      result.h1 = ((doc.querySelector('h1') || {}).textContent || '').trim().slice(0, 500);
       result.leadImage = meta(doc, ['og:image', 'og:image:url', 'twitter:image', 'twitter:image:src', 'image']);
       result.title = meta(doc, ['og:title', 'twitter:title']) || (doc.title || '').trim();
       result.excerpt = meta(doc, ['description', 'og:description', 'twitter:description']);

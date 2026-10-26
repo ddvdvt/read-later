@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeUrl, isSavableUrl, extractUrls, titleFromUrl, originPattern, stripTracking, displayHost } from '../extension/lib/url.js';
-import { buildArticle, countWords, readingMinutes, makeExcerpt, isoDate, clean } from '../extension/lib/article.js';
+import { buildArticle, countWords, readingMinutes, makeExcerpt, isoDate, clean, cleanTitle } from '../extension/lib/article.js';
 import { makeItem, normalizeTags, validTime, mergeCapture, applyAction, expiredTrash, trashDaysLeft, filterItems, sortItems, tagCounts, viewCounts, newId } from '../extension/lib/model.js';
 import { ensureSettings, DEFAULTS, needsBackupReminder, formatBytes, plural, quotaLevel, detectCharset } from '../extension/lib/settings.js';
 
@@ -198,4 +198,12 @@ test('formatting helpers', () => {
   assert.equal(detectCharset('text/html; charset=windows-1251', ''), 'windows-1251');
   assert.equal(detectCharset('text/html', '<meta charset="koi8-r">'), 'koi8-r');
   assert.equal(detectCharset(null, '<meta http-equiv="Content-Type" content="text/html; charset=bogus-x">'), 'utf-8');
+});
+
+test('cleanTitle drops the site name', () => {
+  assert.equal(cleanTitle('Как читать — Блог о чтении', 'Блог о чтении'), 'Как читать');
+  assert.equal(cleanTitle('Field Notes | Why offline', 'Field Notes'), 'Why offline');
+  assert.equal(cleanTitle('Why offline reading matters | Field Notes', '', 'Why offline reading matters'), 'Why offline reading matters');
+  assert.equal(cleanTitle('A - B - C', 'nope'), 'A - B - C');
+  assert.equal(cleanTitle('Short', '', 'Sh'), 'Short');
 });

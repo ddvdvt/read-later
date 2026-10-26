@@ -29,7 +29,9 @@ let lost = new Set();
 /** @type {Map<string, string>} image url → blob: URL */
 const blobUrls = new Map();
 let settings = await getSettings();
-let restoring = true;
+/** Ignore scroll events until the saved position is restored (time based: timers are throttled in background tabs). */
+let restoreUntil = Infinity;
+const restoring = () => Date.now() < restoreUntil;
 
 // ------------------------------------------------------------------ typography
 
@@ -88,7 +90,7 @@ function togglePanel(panelSel, btnSel, force) {
   const p = $(panelSel);
   const open = force ?? p.hidden;
   for (const [ps, bs] of [['#typePanel', '#typeBtn'], ['#moreMenu', '#moreBtn']]) {
-    if (ps !== panelSel) {
+    if (open && ps !== panelSel) {
       $(ps).hidden = true;
       $(bs).setAttribute('aria-expanded', 'false');
     }
@@ -100,9 +102,9 @@ function togglePanel(panelSel, btnSel, force) {
 $('#typeBtn').addEventListener('click', () => togglePanel('#typePanel', '#typeBtn'));
 $('#moreBtn').addEventListener('click', () => togglePanel('#moreMenu', '#moreBtn'));
 document.addEventListener('click', (e) => {
-  const tgt = /** @type {HTMLElement} */ (e.target);
-  if (!tgt.closest('#typePanel, #typeBtn')) togglePanel('#typePanel', '#typeBtn', false);
-  if (!tgt.closest('#moreMenu, #moreBtn')) togglePanel('#moreMenu', '#moreBtn', false);
+  const tgt = e.target instanceof Element ? e.target : null;
+  if (!tgt?.closest('#typePanel, #typeBtn')) togglePanel('#typePanel', '#typeBtn', false);
+  if (!tgt?.closest('#moreMenu, #moreBtn')) togglePanel('#moreMenu', '#moreBtn', false);
 });
 
 // ------------------------------------------------------------------ article
@@ -317,12 +319,16 @@ function renderContentKeepScroll() {
   scrollTo(0, y);
 }
 
+/** @param {EventTarget | null} t @returns {Element | null} */
+const asEl = (t) => (t instanceof Element ? t : null);
+
 document.addEventListener('mouseup', (e) => {
-  if (/** @type {HTMLElement} */ (e.target).closest('#hlPop')) return;
+  const tgt = asEl(e.target);
+  if (tgt?.closest('#hlPop')) return;
   setTimeout(() => {
     const off = selectionOffsets();
     if (off && off.end > off.start) showPop(off.rect, 'new');
-    else if (!(/** @type {HTMLElement} */ (e.target).closest('mark.hl'))) hidePop();
+    else if (!tgt?.closest('mark.hl')) hidePop();
   }, 0);
 });
 document.addEventListener('keyup', (e) => {
@@ -428,24 +434,19 @@ function scrollToRatio(r) {
 
 let saveTimer = 0;
 let lastY = 0;
-let ticking = false;
 let autoArchived = false;
+// plain scroll handler (no requestAnimationFrame: it pauses in background tabs)
 addEventListener('scroll', () => {
-  if (ticking) return;
-  ticking = true;
-  requestAnimationFrame(() => {
-    ticking = false;
-    const r = scrollRatio();
-    $('#progressBar').style.width = `${Math.round(r * 100)}%`;
-    const bar = $('#bar');
-    bar.classList.toggle('scrolled', scrollY > 10);
-    bar.classList.toggle('hide', scrollY > lastY && scrollY > 200 && $('#typePanel').hidden && $('#moreMenu').hidden);
-    lastY = scrollY;
-    if (restoring || !item || item.content !== 'full') return;
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(saveProgress, 700);
-  });
-});
+  const r = scrollRatio();
+  $('#progressBar').style.width = `${Math.round(r * 100)}%`;
+  const bar = $('#bar');
+  bar.classList.toggle('scrolled', scrollY > 10);
+  bar.classList.toggle('hide', scrollY > lastY && scrollY > 200 && $('#typePanel').hidden && $('#moreMenu').hidden);
+  lastY = scrollY;
+  if (restoring() || !item || item.content !== 'full') return;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveProgress, 700);
+}, { passive: true });
 
 async function saveProgress() {
   if (!item) return;
@@ -461,7 +462,7 @@ async function saveProgress() {
   }
 }
 addEventListener('pagehide', () => {
-  if (!restoring && item && item.content === 'full') saveProgress();
+  if (!restoring() && item && item.content === 'full') saveProgress();
 });
 
 // ------------------------------------------------------------------ actions
@@ -614,14 +615,14 @@ try {
   if (item && item.deletedAt) toast(t('inTrashNotice'), { action: t('restore'), onAction: async () => { [item] = await actOn([id], 'restore'); renderHeader(); } , ms: 10000 });
   if (item && item.content === 'full' && item.progress > 0.01 && item.progress < 0.99) {
     // wait for layout (fonts, images without size) before restoring the position
-    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    await new Promise((r) => setTimeout(r, 60));
     scrollToRatio(item.progress);
   }
   if (item && item.content === 'full' && !item.lastReadAt) updateItems([id], (it) => ({ ...it, lastReadAt: Date.now() }), { silent: true });
 } catch (e) {
   $('#loading').replaceChildren(el('span', { class: 'banner error' }, `${t('errLoad')}: ${String((e && /** @type {any} */ (e).message) || e)}`));
 }
-setTimeout(() => (restoring = false), 600);
+restoreUntil = Date.now() + 500;
 document.body.dataset.ready = item ? '1' : '0';
 
 // another tab changed this article (e.g. text loaded from the library)

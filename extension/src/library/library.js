@@ -261,13 +261,14 @@ function paintCursor(focus) {
 function renderBulk() {
   const n = state.selected.size;
   const bulk = $('#bulk');
+  const visibleIds = state.results.map((i) => i.id);
+  const all = $('#selectAll');
+  all.hidden = visibleIds.length === 0;
+  all.checked = visibleIds.length > 0 && visibleIds.every((id) => state.selected.has(id));
+  all.indeterminate = !all.checked && n > 0;
   bulk.hidden = n === 0;
   if (!n) return;
   $('#bulkCount').textContent = t('selectedCount', [String(n)]);
-  const visibleIds = state.results.map((i) => i.id);
-  const all = $('#selectAll');
-  all.checked = visibleIds.length > 0 && visibleIds.every((id) => state.selected.has(id));
-  all.indeterminate = !all.checked && n > 0;
   const ids = [...state.selected];
   const items = ids.map((id) => state.byId.get(id)).filter(Boolean);
   const b = (label, fn, cls = '') => el('button', { type: 'button', class: cls, onclick: fn }, label);

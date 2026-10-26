@@ -299,6 +299,9 @@
   "select": {
     "message": "Select"
   },
+  "selectAll": {
+    "message": "Select all"
+  },
   "selectedCount": {
     "message": "Selected: $1"
   },

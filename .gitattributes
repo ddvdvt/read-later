@@ -1,3 +1,4 @@
 * text=auto eol=lf
 *.png binary
 *.docx binary
+e2e/fixtures/cp1251.html binary

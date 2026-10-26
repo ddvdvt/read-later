@@ -40,10 +40,10 @@
   position: sticky; top: 50px; z-index: 4; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
   background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; box-shadow: var(--shadow); margin-bottom: 8px;
 }
-.bulk-all { display: flex; gap: 8px; align-items: center; font-weight: 600; padding-right: 6px; }
 .bulk-actions { display: flex; gap: 4px; flex-wrap: wrap; }
 .bulk-actions button { min-height: 30px; padding: 4px 10px; }
-.heading { display: flex; align-items: baseline; gap: 12px; margin: 6px 0 8px; }
+.heading { display: flex; align-items: center; gap: 12px; margin: 6px 0 8px; padding-left: 10px; }
+#selectAll { width: 16px; height: 16px; margin: 0 2px 0 0; }
 .heading h1 { font-size: 22px; margin: 0; }
 
 .list { display: flex; flex-direction: column; outline: none; }

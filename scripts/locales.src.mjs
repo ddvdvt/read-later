@@ -112,6 +112,7 @@ const M = {
   deleteForever: ['Удалить навсегда', 'Delete forever'],
   editTags: ['Теги', 'Tags'],
   select: ['Выбрать', 'Select'],
+  selectAll: ['Выбрать все', 'Select all'],
   selectedCount: ['Выбрано: $1', 'Selected: $1'],
   clearSelection: ['Снять выбор', 'Clear selection'],
   undo: ['Отменить', 'Undo'],
